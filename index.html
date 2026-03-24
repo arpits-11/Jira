@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jira</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <div id="root">
+        <main id="content">
+            <div class="header">
+                <div class="header1">
+                    <div class="header2">
+                        <h1>Jira</h1>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="main">
+                    <ul class="main2" tabindex="-1" role="tablist">
+                        <li class="sw" role="tab" tabindex="-1">
+                            <button class="bt1">
+                                <div class="sw1">
+                                    <img loading="lazy"
+                                        src="https://dam-cdn.atl.orangelogic.com/AssetLink/575h0o4d5531rcso8b6or7m5ljj5yf77.svg"
+                                        alt width="100" style="max-width: 100%;">
+                                </div>
+                                <p>Software</p>
+                            </button>
+                        </li>
+                        <li class="opr" role="tab" tabindex="-1">
+                            <button class="bt2">
+                                <div class="opr1">
+                                    <img loading="lazy"
+                                        src="https://dam-cdn.atl.orangelogic.com/AssetLink/yl01ea2raydqsbpq411uu2jb4x1o5k16.svg"
+                                        alt width="100" style="max-width: 100%;">
+                                </div>
+                                <p>Operations</p>
+                            </button>
+                        </li>
+                        <li class="hr" role="tab" tabindex="-1">
+                            <button class="bt3">
+                                <div class="hr1">
+                                    <img loading="lazy"
+                                        src="https://dam-cdn.atl.orangelogic.com/AssetLink/c85anlqa4vbx8kgn1y41t10q44q0325l.svg"
+                                        alt width="100" style="max-width: 100%;">
+                                </div>
+                                <p>HR</p>
+                            </button>
+                        </li>
+                        <li class="at" role="tab" tabindex="-1">
+                            <button class="bt4">
+                                <div class="at1">
+                                    <img loading="lazy"
+                                        src="https://dam-cdn.atl.orangelogic.com/AssetLink/72lkaojcq61b111eyg28t62gv1002f22.svg"
+                                        alt width="100" style="max-width: 100%;">
+                                </div>
+                                <p>All Teams</p>
+                            </button>
+                        </li>
+                        <li class="mt" role="tab" tabindex="-1">
+                            <button class="bt5">
+                                <div class="mt1">
+                                    <img loading="lazy"
+                                        src="https://dam-cdn.atl.orangelogic.com/AssetLink/6648s271ra1efk47v7r40xslp7630o4w.svg"
+                                        alt width="100" style="max-width: 100%;">
+                                </div>
+                                <p>Marketing</p>
+                            </button>
+                        </li>
+                        <li class="dg" role="tab" tabindex="-1">
+                            <button class="bt6">
+                                <div class="dg1">
+                                    <img loading="lazy"
+                                        src="https://dam-cdn.atl.orangelogic.com/AssetLink/x82hxxkp01k3f20y83q86a0r0bvm55p4.svg"
+                                        alt="" width="100" style="max-width:100%">
+                                </div>
+                                <p>Designs</p>
+                            </button>
+                        </li>
+                        <li class="sl" role="tab" tabindex="-1">
+                            <button class="bt7">
+                                <div class="sl1">
+                                    <img loading="lazy"
+                                        src="https://dam-cdn.atl.orangelogic.com/AssetLink/6101e5o3r21du53012037egepyolhibt.svg"
+                                        alt="" width="100" style="max-width:100%">
+                                </div>
+                                <p>Sales</p>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="main3">
+                <div class="main4">
+                    <div style="margin: 65px;">
+                        <h1 class="h1">Where your teams and AI come together</h1>
+                        <div data-testid="signup-form" class="sup">
+                            <div data-testid="try-intent-wrapper">
+                                <form autocomplete="off" data-testid="account-creation">
+                                    <div class="sup1">
+                                        <label id="email-uid1-label" for="email-uid1" style="font-family: system-ui;">
+                                            Work email
+                                            <span aria-hidden="true" title="required">*</span>
+                                        </label>
+                                        <div class="">
+                                            <div role="presentation" data-ds--text-field--container="true"
+                                                data-testid="email_field-container" class="">
+                                                <input aria-describedby="account_creation_email_help_text"
+                                                    aria-labelledby="email-uid1-label" id="email-uid1"
+                                                    autocomplete="email" type="email" data-ds--text-field--input=" true"
+                                                    data-testid="email_field" name="email" placeholder="you@company.com"
+                                                    required class="in" value>
+                                            </div>
+                                            <div id="account_creation_email_help_text" class="in1"
+                                                style="font-family: system-ui;">Using a work email
+                                                helps
+                                                find teammates and boost collaboration.
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <button class="bt8" type="submit">Sign up</button>
+                                        </div>
+                                </form>
+                                <div class="ln">
+                                    <div class="ln1"></div>
+                                    or continue with
+                                    <div class="ln2"></div>
+                                </div>
+                                <div>
+                                    <ul role="list" class="bx">
+                                        <li>
+                                            <button type="button" aria-label="sign up with google" class="bt9">
+                                                <!-- <svg aria-hidden="true" viewbox="0 0 18 18" class="bx1">
+                                                    <path
+                                                        d="M17.64 9.205c0-.639-.057-1.252-.164-1.841H9v3.481h4.844a4.14 4.14 0 0 1-1.796 2.716v2.259h2.908c1.702-1.567 2.684-3.875 2.684-6.615Z"
+                                                        fill="#4285F4"></path>
+                                                    <path
+                                                        d="M9 18c2.43 0 4.467-.806 5.956-2.18l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 0 0 9 18Z"
+                                                        fill="#34A853"></path>
+                                                    <path
+                                                        d="M3.964 10.71A5.41 5.41 0 0 1 3.682 9c0-.593.102-1.17.282-1.71V4.958H.957A8.996 8.996 0 0 0 0 9c0 1.452.348 2.827.957 4.042l3.007-2.332Z"
+                                                        fill="#FBBC05"></path>
+                                                    <path
+                                                        d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 0 0 .957 4.958L3.964 7.29C4.672 5.163 6.656 3.58 9 3.58Z"
+                                                        fill="#EA4335"></path>
+                                                </svg> -->
+                                                <span>Goggle</span>
+                                            </button>
+                                        </li>
+                                        <li>
+                                            <button type="button" aria-label="sign up with Microsoft" class="bt10">
+                                                <!-- <svg aria-hidden="true" viewbox="0 0 18 18" class="bx2">
+                                                    <path fill="#f25022" d="M1 1h9v9H1z"></path>
+                                                    <path fill="#00a4ef" d="M1 11h9v9H1z"></path>
+                                                    <path fill="#7fba00" d="M11 1h9v9h-9z"></path>
+                                                    <path fill="#ffb900" d="M11 11h9v9h-9z"></path>
+                                                </svg> -->
+                                                <span>Macrosoft</span>
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <p class="p">Trying to access Jira?
+                                        <a class="a"
+                                            href="https://id.atlassian.com/login?continue=https%3A%2F%2Fwww.atlassian.com%2Fgateway%2Fapi%2Fstart%2Fauthredirect"
+                                            target rel style="color: blue;">
+                                            <span>Log in</span>
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="pic">
+                    <picture>
+                        <img loading="lazy"
+                            src="https://dam-cdn.atl.orangelogic.com/AssetLink/wdmncs35471g5521yr5462w3ku0t834b.webp"
+                            alt="Screen capture of ajira last view" style=" height: 393px; width: 627px;">
+                    </picture>
+                </div>
+            </div>
+        </main>
+        <div>
+            <div style="background-color: white;">
+                <div style="margin-top: 40px; margin-bottom: 60px;">
+                    <div class="main5">
+                        <h2 class="h2">Discover AI features that power your teams</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="main6 tab-group">
+                <div role="tablist">
+                    <div class="tab1">
+                        <div class="tab-group-inner">
+                            <button type="button" role="tab" value="Plan" aria-selected="false" aria-controls="plan"
+                                id="plan" data-event-component="linkButton" data-event-container="tabcontent"
+                                data-evevnt="clicked" data-label="Plan"
+                                data-product-key="jiraSoftware-PaidLpJiraFeatures" class="bt11">Plan</button>
+                            <button type="button" role="tab" value="track" aria-selected="false" aria-controls="track"
+                                id="track" data-event-component="linkButton" data-event-container="tabcontent"
+                                data-evevnt="clicked" data-label="Track"
+                                data-product-key="jiraSoftware-PaidLpJiraFeatures" class="bt12">Track</button>
+                            <button type="button" role="tab" value="collaborate" aria-selected="false"
+                                aria-controls="collaborate" id="collaborate" data-event-component="linkButton"
+                                data-event-container="tabcontent" data-evevnt="clicked" data-label="Collaborate"
+                                data-product-key="jiraSoftware-PaidLpJiraFeatures" class="bt13">Collaborate</button>
+                            <button type="button" role="tab" value="report" aria-selected="false" aria-controls="report"
+                                id="report" data-event-component="linkButton" data-event-container="tabcontent"
+                                data-evevnt="clicked" data-label="Report"
+                                data-product-key="jiraSoftware-PaidLpJiraFeatures" class="bt14">Report</button>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="tg">
+                    <div class="tg1" style="color: #1C2B42;">
+                        <div class="select-container-inner">
+                            <label for="tabs" aria-label="tabs">
+                                <select id="tabs" class="tb">
+                                    <option data-index="0" data-id="plan" data-event-component="linkButton"
+                                        data-event-container="tabContent" data-event="clicked" data-label="Plan"
+                                        data-product-key="jiraSoftware-PaidLpJiraFeatures" value="Plan"
+                                        aria-selected="false" aria-describedby="tab-plan" class="op">
+                                        Plan</option>
+                                    <option data-index="1" data-id="track" data-event-component="linkButton"
+                                        data-event-container="tabContent" data-event="clicked" data-label="Track"
+                                        data-product-key="jiraSoftware-PaidLpJiraFeatures" value="Track"
+                                        aria-selected="false" aria-describedby="tab-track" class="op1">
+                                        Track</option>
+                                    <option data-index="2" data-id="collaborate" data-event-component="linkButton"
+                                        data-event-container="tabContent" data-event="clicked" data-label="Collaborate"
+                                        data-product-key="jiraSoftware-PaidLpJiraFeatures" value="Collaborate"
+                                        aria-selected="false" aria-describedby="tab-collaborate" class="op2">
+                                        Collaborate</option>
+                                    <option data-index="3" data-id="report" data-event-component="linkButton"
+                                        data-event-container="tabContent" data-event="clicked" data-label="Report"
+                                        data-product-key="jiraSoftware-PaidLpJiraFeatures" value="Report"
+                                        aria-selected="false" aria-describedby="tab-report" class="op3">
+                                        Report</option>
+                                </select>
+                            </label>
+                            <svg width="15" height="8" viewBox="0 0 15 8" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1.5 1L7.5 7L13.5 1" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-panels">
+                    <div class=" tab-panel" style="margin: 20px auto 0 auto;" aria-hidden="false" id="tab-plan">
+                        <section class="">
+                            <div class="tp1">
+                                <div style="grid-column-end: 5; grid-column-start: 1;">
+                                    <h3>Kick off with clarity</h3>
+                                    <ul style="fill: #6554c0; padding-left: 0px; margin-top: 0px; list-style: none;">
+                                        <li>
+                                            <div class="icon">
+                                                <svg fill="none" stroke="currentColor" version="1.2"
+                                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 30" width="24px"
+                                                    height="24px">
+                                                    <path
+                                                        d="m1.5 16.4c1.8-1.7 4.2-0.3 4.2-0.3l5.6 5.9 15.4-18.7c0 0 1.7-1.2 3.5 0.1 1.9 1.4 0.8 3.6 0.8 3.6l-18 22h-2l-9.1-8.7c0 0-2.1-2.2-0.4-3.9z">
+                                                    </path>
+                                                </svg>
+                                            </div>
+                                            <p><strong>Align work to goals:</strong> Connect work to company impact and
+                                                collaborate with cross-functional partners.</p>
+                                        </li>
+                                        <li>
+                                            <div class="icon">
+                                                <svg fill="none" stroke="currentColor" version="1.2"
+                                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 30" width="24px"
+                                                    height="24px">
+                                                    <path
+                                                        d="m1.5 16.4c1.8-1.7 4.2-0.3 4.2-0.3l5.6 5.9 15.4-18.7c0 0 1.7-1.2 3.5 0.1 1.9 1.4 0.8 3.6 0.8 3.6l-18 22h-2l-9.1-8.7c0 0-2.1-2.2-0.4-3.9z">
+                                                    </path>
+                                                </svg>
+                                            </div>
+                                            <p><strong>Break down projects:</strong> Go from big picture to
+                                                automatically assigned tasks with Rovo AI.</p>
+                                        </li>
+                                        <li>
+                                            <div class="icon">
+                                                <svg fill="none" stroke="currentColor" version="1.2"
+                                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 30" width="24px"
+                                                    height="24px">
+                                                    <path
+                                                        d="m1.5 16.4c1.8-1.7 4.2-0.3 4.2-0.3l5.6 5.9 15.4-18.7c0 0 1.7-1.2 3.5 0.1 1.9 1.4 0.8 3.6 0.8 3.6l-18 22h-2l-9.1-8.7c0 0-2.1-2.2-0.4-3.9z">
+                                                    </path>
+                                                </svg>
+                                            </div>
+                                            <p><strong>Get the context you need:</strong> Use Rovo to find relevant
+                                                resources and rich data from across your apps.</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <img src="https://dam-cdn.atl.orangelogic.com/AssetLink/y43424xo5d312uq63es504lre561n4hf.webp"
+                                        alt="Jira plan view" style="height: 502px; width: 757px;">
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div>
+                <section class="sc">
+                    <div class="sc1">
+                        <div class="sc2">
+                            <div class="sc3">
+                                <picture class="">
+                                    <img loading="lazy"
+                                        src="https://dam-cdn.atl.orangelogic.com/AssetLink/737g80fw6ml20lr326ccpphj50d7xex2.webp"
+                                        alt="Jira Boards" style="width: 560px; height: 349px;">
+                                </picture>
+                                <div>
+                                    <div class="txt">
+                                        <div class="text-section">
+                                            <h2>Cutomize how tour team's work flows</h2>
+                                            <hr class="hr2">
+                                            <p class="contentBlock-body">Set up, clean up, and automate even the most
+                                                complicated project workflows.</p>
+                                        </div>
+                                    </div>
+                                    <div class=""></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sc4">
+                            <div class="sc5">
+                                <div>
+                                    <div class="txt">
+                                        <div class="text-section">
+                                            <h2>Stay on track - even when the track changes</h2>
+                                            <hr class="hr2">
+                                            <p class="contentBlock-body">Use the timeline view to map out the big
+                                                picture, communicate updates to stakeholders, and ensure your team stays
+                                                on the same page.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class=""></div>
+                                </div>
+                                <picture class="">
+                                    <img loading="lazy"
+                                        src="https://dam-cdn.atl.orangelogic.com/AssetLink/03ww8q35s1o815s41383u0eye53o18ib.webp"
+                                        alt="Jira timeline view." style="width: 560px; height: 329px;">
+                                </picture>
+                            </div>
+                        </div>
+                        <div class="sc6">
+                            <div class="sc7">
+                                <picture>
+                                    <img loading="lazy"
+                                        src="https://dam-cdn.atl.orangelogic.com/AssetLink/2oh1ay3ar5u0q28ey78w3e7iqsj5i5r1.webp"
+                                        alt="Spreadsheets" style="width: 560px; height: 396px;">
+                                </picture>
+                                <div>
+                                    <div class="txt">
+                                        <div class="text-section">
+                                            <h2>Bye-bye, spreadsheets</h2>
+                                            <hr class="hr2">
+                                            <p class="contentBlock-body">Keep every detail of a project centralized in
+                                                real time so up-to-date info can flow freely across people, teams, and
+                                                tools.</p>
+                                        </div>
+                                    </div>
+                                    <div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <div>
+            <div class="sc8">
+                <div class="sc9">
+                    <div class="sc10">
+                        <div class="" style="color: #FFFFFF ;">
+                            <div class="sc11">
+                                <div class="primary-cta-content">
+                                    <div class="txt">
+                                        <div class="text-section"
+                                            style="flex-direction: column; display: flex; font-size: 25px; text-align: center;">
+                                            <h2
+                                                style="margin: 0 0 24px 0; font-size: 2.57rem; line-height: 1.16; font-weight: 500; color: #FFFFFF;">
+                                                Move fast, stay aligned, and build better - together</h2>
+                                            <div data-testid="try-intent-wrapper">
+                                                <div class="contentBlock-linkFlex">
+                                                    <a class="bt15" href="https://www.atlassian.com#start-trial"
+                                                        role="button" data-event="clicked"
+                                                        data-event-container="ctaSection"
+                                                        data-event-component="linkButton"
+                                                        data-product-key="jiraSoftware-PaidLpJiraFeatures">Get it
+                                                        free</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <section class="sc12">
+                <h3 class="h3">
+                    Trusted by over 100,000 customers world-wide</h3>
+                <div class="poster">
+                    <div class="poster1"><img loading="lazy"
+                            src="https://dam-cdn.atl.orangelogic.com/AssetLink/5382nib232306760cxko3fu33yr03hc6.svg"
+                            alt="Square logo" width="162" height="40" style="max-width:100%">
+                    </div>
+                    <div class="poster1"><img loading="lazy"
+                            src="https://dam-cdn.atl.orangelogic.com/AssetLink/8sh6x4kh58c7576am3gc70215abr77gu.svg"
+                            alt="eBay logo" width="99" height="41" style="max-width:100%"></div>
+                    <div class="poster1"><img loading="lazy"
+                            src="https://dam-cdn.atl.orangelogic.com/AssetLink/7l40fo7ky3ck1752eh0ti31556343388.svg"
+                            alt="Spotify logo" width="163" height="49" style="max-width:100%">
+                    </div>
+                    <div class="poster1"><img loading="lazy"
+                            src="https://dam-cdn.atl.orangelogic.com/AssetLink/0atd5rxku6yg42wfhx0b1jdrsusm532i.svg"
+                            alt="Cisco logo" width="92" height="49" style="max-width:100%">
+                    </div>
+                </div>
+            </section>
+        </div>
+        <footer class="footer">
+            <div class=" footer1">
+                <div class="footer2">
+                    <div class="box">
+                        <div class="boxes">
+                            <div style="margin-block-end: 2rem; height: 2pc">
+                                <a aria-label="Atlassian logo" href="https://www.atlassian.com/" data-event="clicked"
+                                    data-event-component="linkButton" data-event-container="globalFooterV2">
+                                    <svg width="32" height="32" viewBox="0 0 48 48" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <g id="Container">
+                                            <path
+                                                d="M41.3175 36.5672L25.4402 4.81262C25.1276 4.12502 24.8151 4 24.44 4C24.1275 4 23.7524 4.12502 23.3774 4.75011C21.127 8.31312 20.1269 12.4387 20.1269 16.7518C20.1269 22.7527 23.1898 28.3785 27.6905 37.4423C28.1906 38.4425 28.5656 38.63 29.4407 38.63H40.4423C41.2549 38.63 41.6925 38.3175 41.6925 37.6924C41.6925 37.3798 41.63 37.1923 41.3175 36.5672ZM18.2516 21.565C17.0014 19.6898 16.6264 19.5647 16.3138 19.5647C16.0013 19.5647 15.8138 19.6898 15.2512 20.8149L7.31255 36.6922C7.06251 37.1923 7 37.3798 7 37.6299C7 38.1299 7.43756 38.63 8.3752 38.63H19.5643C20.3144 38.63 20.877 38.0049 21.1895 36.8172C21.5646 35.317 21.6896 34.0043 21.6896 32.4416C21.6896 28.066 19.7518 23.8154 18.2516 21.565Z"
+                                                fill="#1868DB"></path>
+                                        </g>
+                                    </svg>
+                                </a>
+                            </div>
+                            <ul style="padding-inline-start: 20px; margin-block-end: 0; list-style: none;">
+                                <li
+                                    style="margin-inline-start: -20px; margin-block-end: 19px; margin-block-start: 0; list-style-type: none; line-height: 14px; color: #1C2B42; font-size: 1rem;">
+                                    <div class="link-wrapper">
+                                        <a class="a" style="font-weight: 700;" href="https://www.atlassian.com/company"
+                                            target="_blank" rel="noreferrer"><span>Company</span></a>
+                                    </div>
+                                </li>
+                                <li
+                                    style="margin-inline-start: -20px; margin-block-end: 19px; margin-block-start: 0; list-style-type: none; line-height: 14px; color: #1C2B42; font-size: 1rem;">
+                                    <div class="link-wrapper">
+                                        <a class="a" style="font-weight: 700;"
+                                            href="https://www.atlassian.com/company/careers" target="_blank"
+                                            rel="noreferrer"><span>Careers</span></a>
+                                    </div>
+                                </li>
+                                <li
+                                    style="margin-inline-start: -20px; margin-block-end: 19px; margin-block-start: 0; list-style-type: none; line-height: 14px; color: #1C2B42; font-size: 1rem;">
+                                    <div class="link-wrapper">
+                                        <a class="a" style="font-weight: 700;"
+                                            href="https://www.atlassian.com/company/events" target="_blank"
+                                            rel="noreferrer"><span>Events</span></a>
+                                    </div>
+                                </li>
+                                <li
+                                    style="margin-inline-start: -20px; margin-block-end: 19px; margin-block-start: 0; list-style-type: none; line-height: 14px; color: #1C2B42; font-size: 1rem;">
+                                    <div class="link-wrapper">
+                                        <a class="a" style="font-weight: 700;" href="https://www.atlassian.com/blog"
+                                            target="_blank" rel="noreferrer"><span>Blogs</span></a>
+                                    </div>
+                                </li>
+                                <li
+                                    style="margin-inline-start: -20px; margin-block-end: 19px; margin-block-start: 0; list-style-type: none; line-height: 14px; color: #1C2B42; font-size: 1rem;">
+                                    <div class="link-wrapper">
+                                        <a class="a" style="font-weight: 700;" href="https://investors.atlassian.com"
+                                            target="_blank" rel="noreferrer"><span>Investor Relations</span></a>
+                                    </div>
+                                </li>
+                                <li
+                                    style="margin-inline-start: -20px; margin-block-end: 19px; margin-block-start: 0; list-style-type: none; line-height: 14px; color: #1C2B42; font-size: 1rem;">
+                                    <div class="link-wrapper">
+                                        <a class="a" style="font-weight: 700;"
+                                            href="https://www.atlassianfoundation.org/" target="_blank"
+                                            rel="noreferrer"><span>Atlassian Foundation</span></a>
+                                    </div>
+                                </li>
+                                <li
+                                    style="margin-inline-start: -20px; margin-block-end: 19px; margin-block-start: 0; list-style-type: none; line-height: 14px; color: #1C2B42; font-size: 1rem;">
+                                    <div class="link-wrapper">
+                                        <a class="a" style="font-weight: 700;"
+                                            href="https://www.atlassian.com/company/news/press-kit" target="_blank"
+                                            rel="noreferrer"><span>Press kit</span></a>
+                                    </div>
+                                </li>
+                                <li
+                                    style="margin-inline-start: -20px; margin-block-end: 19px; margin-block-start: 0; list-style-type: none; line-height: 14px; color: #1C2B42; font-size: 1rem;">
+                                    <div class="link-wrapper">
+                                        <a class="a" style="font-weight: 700;"
+                                            href="https://www.atlassian.com/company/contact" target="_blank"
+                                            rel="noreferrer"><span>Contact us</span></a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="boxes">
+                            <div
+                                style="margin-block-start: 0; margin-block-end: 2rem; height: 2pc; align-items: center;">
+                                <h2
+                                    style="color: #101214; font-size: 13px; font-family:system-ui; font-weight: 700; text-transform: uppercase;">
+                                    Products</h2>
+                            </div>
+                            <ul style="padding-inline-start: 20px; margin-block-end: 0; list-style: none;">
+                                <li
+                                    style="margin-inline-start: -20px; margin-block-end: 19px; margin-block-start: 0; list-style-type: none; line-height: 14px; color: #1C2B42; font-size: 1rem;">
+                                    <div class="link-wrapper">
+                                        <a class="a" href="https://www.atlassian.com/rovo" target="_blank"
+                                            rel="noreferrer">
+                                            <span>Rovo</span></a>
+                                    </div>
+                                </li>
+                                <li
+                                    style="margin-inline-start: -20px; margin-block-end: 19px; margin-block-start: 0; list-style-type: none; line-height: 14px; color: #1C2B42; font-size: 1rem;">
+                                    <div class="link-wrapper">
+                                        <a class="a" href="https://www.atlassian.com/software/jira" target="_blank"
+                                            rel="noreferrer"><span>Jira</span></a>
+                                    </div>
+                                </li>
+                                <li
+                                    style="margin-inline-start: -20px; margin-block-end: 19px; margin-block-start: 0; list-style-type: none; line-height: 14px; color: #1C2B42; font-size: 1rem;">
+                                    <div class="link-wrapper">
+                                        <a class="a" href="https://www.atlassian.com/software/jira/align"
+                                            target="_blank" rel="noreferrer"><span>Jira Align</span></a>
+                                    </div>
+                                </li>
+                                <li
+                                    style="margin-inline-start: -20px; margin-block-end: 19px; margin-block-start: 0; list-style-type: none; line-height: 14px; color: #1C2B42; font-size: 1rem;">
+                                    <div class="link-wrapper">
+                                        <a class="a" href="https://www.atlassian.com/software/jira/service-management"
+                                            target="_blank" rel="noreferrer"><span>Jira Service Management</span></a>
+                                    </div>
+                                </li>
+                                <li
+                                    style="margin-inline-start: -20px; margin-block-end: 19px; margin-block-start: 0; list-style-type: none; line-height: 14px; color: #1C2B42; font-size: 1rem;">
+                                    <div class="link-wrapper">
+                                        <a class="a" href="https://www.atlassian.com/software/confluence"
+                                            target="_blank" rel="noreferrer"><span>Confluence</span></a>
+                                    </div>
+                                </li>
+                                <li
+                                    style="margin-inline-start: -20px; margin-block-end: 19px; margin-block-start: 0; list-style-type: none; line-height: 14px; color: #1C2B42; font-size: 1rem;">
+                                    <div class="link-wrapper">
+                                        <a class="a" href="https://www.atlassian.com/software/loom" target="_blank"
+                                            rel="noreferrer"><span>Loom</span></a>
+                                    </div>
+                                </li>
+                                <li
+                                    style="margin-inline-start: -20px; margin-block-end: 19px; margin-block-start: 0; list-style-type: none; line-height: 14px; color: #1C2B42; font-size: 1rem;">
+                                    <div class="link-wrapper">
+                                        <a class="a" href="https://trello.com/home" target="_blank"
+                                            rel="noreferrer"><span>Trello</span></a>
+                                    </div>
+                                </li>
+                                <li
+                                    style="margin-inline-start: -20px; margin-block-end: 19px; margin-block-start: 0; list-style-type: none; line-height: 14px; color: #1C2B42; font-size: 1rem;">
+                                    <div class="link-wrapper">
+                                        <a class="a" href="https://www.atlassian.com/software/bitbucket" target="_blank"
+                                            rel="noreferrer"><span>Bitbucket</span></a>
+                                    </div>
+                                </li>
+                                <li
+                                    style="margin-inline-start: -20px; margin-block-start: 2rem; font-weight: 500; padding-block: 8px; list-style-type: none;">
+                                    <div class="link-wrapper">
+                                        <a class="a" href="https://www.atlassian.com/software" target="_blank"
+                                            rel="noreferrer"><span>See all products<svg width="11" height="8"
+                                                    viewBox="0 0 11 8" fill="none" xmlns="http://www.w3.org/2000/svg"
+                                                    aria-hidden="true"
+                                                    style="fill:#101214; transition: transform .25s ease-in-out; margin: 4px 0 1px 4px; ">
+                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                        d="M7.40796 0L6.32831 1.2021L8.07854 3.1497H0.763182C0.341906 3.1497 0 3.53038 0 3.99943C0 4.46849 0.341906 4.84917 0.763182 4.84917H8.07854L6.32831 6.7979L7.40796 8L11 3.99943L7.40796 0Z">
+                                                    </path>
+                                                </svg></span></a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="boxes">
+                            <div
+                                style="margin-block-start: 0; margin-block-end: 2rem; height: 2pc; align-items: center;">
+                                <h2
+                                    style="color: #101214; font-size: 13px; font-family: system-ui; font-weight: 700; text-transform: uppercase;">
+                                    Resources</h2>
+                            </div>
+                            <ul style="padding-inline-start: 20px; margin-block-end: 0; list-style: none;">
+                                <li
+                                    style="margin-inline-start: -20px; margin-block-end: 19px; margin-block-start: 0; list-style-type: none; line-height: 14px; color: #1C2B42; font-size: 1rem;">
+                                    <div class="link-wrapper">
+                                        <a class="a" href="https://support.atlassian.com/" target="_blank"
+                                            rel="noreferrer"><span>Technical support</span></a>
+                                    </div>
+                                </li>
+                                <li
+                                    style="margin-inline-start: -20px; margin-block-end: 19px; margin-block-start: 0; list-style-type: none; line-height: 14px; color: #1C2B42; font-size: 1rem;">
+                                    <div class="link-wrapper">
+                                        <a class="a" href="https://www.atlassian.com/licensing/purchase-licensing"
+                                            target="_blank" rel="noreferrer"><span>Purchasing&amp; licensing</span></a>
+                                    </div>
+                                </li>
+                                <li
+                                    style="margin-inline-start: -20px; margin-block-end: 19px; margin-block-start: 0; list-style-type: none; line-height: 14px; color: #1C2B42; font-size: 1rem;">
+                                    <div class="link-wrapper">
+                                        <a class="a" href="https://community.atlassian.com/" target="_blank"
+                                            rel="noreferrer"><span>Atlassian Community</span></a>
+                                    </div>
+                                </li>
+                                <li
+                                    style="margin-inline-start: -20px; margin-block-end: 19px; margin-block-start: 0; list-style-type: none; line-height: 14px; color: #1C2B42; font-size: 1rem;">
+                                    <div class="link-wrapper">
+                                        <a class="a" href="https://confluence.atlassian.com/kb" target="_blank"
+                                            rel="noreferrer"><span>Knowledge base</span></a>
+                                    </div>
+                                </li>
+                                <li
+                                    style="margin-inline-start: -20px; margin-block-end: 19px; margin-block-start: 0; list-style-type: none; line-height: 14px; color: #1C2B42; font-size: 1rem;">
+                                    <div class="link-wrapper">
+                                        <a class="a" href="https://marketplace.atlassian.com/" target="_blank"
+                                            rel="noreferrer"><span>Marketplace</span></a>
+                                    </div>
+                                </li>
+                                <li
+                                    style="margin-inline-start: -20px; margin-block-end: 19px; margin-block-start: 0; list-style-type: none; line-height: 14px; color: #1C2B42; font-size: 1rem;">
+                                    <div class="link-wrapper">
+                                        <a class="a" href="https://my.atlassian.com/products/index" target="_blank"
+                                            rel="noreferrer"><span>My account</span></a>
+                                    </div>
+                                </li>
+                                <li
+                                    style="margin-inline-start: -20px; margin-block-start: 2rem; font-weight: 500; padding-block: 8px; list-style-type: none;">
+                                    <div class="link-wrapper">
+                                        <a class="a" href="https://support.atlassian.com/contact/" target="_blank"
+                                            rel="noreferrer"><span>Create support ticket<svg width="11" height="8"
+                                                    viewBox="0 0 11 8" fill="none" xmlns="http://www.w3.org/2000/svg"
+                                                    aria-hidden="true"
+                                                    style="fill:#101214; transition: transform .25s ease-in-out; margin: 4px 0 1px 4px;">
+                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                        d="M7.40796 0L6.32831 1.2021L8.07854 3.1497H0.763182C0.341906 3.1497 0 3.53038 0 3.99943C0 4.46849 0.341906 4.84917 0.763182 4.84917H8.07854L6.32831 6.7979L7.40796 8L11 3.99943L7.40796 0Z">
+                                                    </path>
+                                                </svg></span></a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="boxes">
+                            <div
+                                style="margin-block-start: 0; margin-block-end: 2rem; height: 2pc; align-items: center;">
+                                <h2
+                                    style="color: #101214; font-size: 13px; font-family: system-ui; font-weight: 700; text-transform: uppercase;">
+                                    Learn</h2>
+                            </div>
+                            <ul style="padding-inline-start: 20px; margin-block-end: 0; list-style: none;">
+                                <li
+                                    style="margin-inline-start: -20px; margin-block-end: 19px; margin-block-start: 0; list-style-type: none; line-height: 14px; color: #1C2B42; font-size: 1rem;">
+                                    <div class="link-wrapper">
+                                        <a class="a" href="https://www.atlassian.com/partners" target="_blank"
+                                            rel="noreferrer"><span>Partners</span></a>
+                                    </div>
+                                </li>
+                                <li
+                                    style="margin-inline-start: -20px; margin-block-end: 19px; margin-block-start: 0; list-style-type: none; line-height: 14px; color: #1C2B42; font-size: 1rem;">
+                                    <div class="link-wrapper">
+                                        <a class="a" href="https://www.atlassian.com/university" target="_blank"
+                                            rel="noreferrer"><span>Training&amp; certification</span></a>
+                                    </div>
+                                </li>
+                                <li
+                                    style="margin-inline-start: -20px; margin-block-end: 19px; margin-block-start: 0; list-style-type: none; line-height: 14px; color: #1C2B42; font-size: 1rem;">
+                                    <div class="link-wrapper">
+                                        <a class="a"
+                                            href="https://confluence.atlassian.com/display/ALLDOC/Atlassian+Documentation"
+                                            target="_blank" rel="noreferrer"><span>Documentation</span></a>
+                                    </div>
+                                </li>
+                                <li
+                                    style="margin-inline-start: -20px; margin-block-end: 19px; margin-block-start: 0; list-style-type: none; line-height: 14px; color: #1C2B42; font-size: 1rem;">
+                                    <div class="link-wrapper">
+                                        <a class="a" href="https://www.atlassian.com/developers" target="_blank"
+                                            rel="noreferrer"><span>Developer resources</span></a>
+                                    </div>
+                                </li>
+                                <li
+                                    style="margin-inline-start: -20px; margin-block-end: 19px; margin-block-start: 0; list-style-type: none; line-height: 14px; color: #1C2B42; font-size: 1rem;">
+                                    <div class="link-wrapper">
+                                        <a class="a" href="https://www.atlassian.com/enterprise/services"
+                                            target="_blank" rel="noreferrer"><span>Enterprise services</span></a>
+                                    </div>
+                                </li>
+                                <li
+                                    style="margin-inline-start: -20px; margin-block-start: 2rem; font-weight: 500; padding-block: 8px; list-style-type: none;">
+                                    <div class="link-wrapper">
+                                        <a class="a" href="https://www.atlassian.com/resources" target="_blank"
+                                            rel="noreferrer"><span>See all resources<svg width="11" height="8"
+                                                    viewBox="0 0 11 8" fill="none" xmlns="http://www.w3.org/2000/svg"
+                                                    aria-hidden="true"
+                                                    style="fill:#101214; transition: transform .25s ease-in-out; margin: 4px 0 1px 4px;">
+                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                        d="M7.40796 0L6.32831 1.2021L8.07854 3.1497H0.763182C0.341906 3.1497 0 3.53038 0 3.99943C0 4.46849 0.341906 4.84917 0.763182 4.84917H8.07854L6.32831 6.7979L7.40796 8L11 3.99943L7.40796 0Z">
+                                                    </path>
+                                                </svg></span></a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer3">
+                    <div data-testid="footer-copyright"
+                        style="text-align: center; line-height: 18px; height: 18px; color:#505258; font-size: 14px; font-family: system-ui;">
+                        Copyright © <!-- -->2026<!-- --> Atlassian</div>
+                    <div style="flex-direction: row; gap: 2rem; align-items: center; display: flex; ">
+                        <ul
+                            style="flex-direction: row; gap: 2rem; align-items: center; list-style-type: none; padding: 0 0 0 0; margin: 0 0 0 0; display: flex; font-family: system-ui;">
+                            <li>
+                                <div class="link-wrapper">
+                                    <a class="a1" href="https://www.atlassian.com/legal/privacy-policy" target="_blank"
+                                        rel="noreferrer"><span>Privacy policy</span></a>
+                                </div>
+                            </li>
+                            <li class="link-wrapper atl-policy-link-container" style="display: none;">
+                                <a class="a1" href="/legal/privacy-policy#additional-disclosures-for-ca-residents"
+                                    target="" rel="" data-event="clicked" data-event-component="linkButton"
+                                    style="display: none;"><span class="atl-policy-link-text"
+                                        style="display: none;">Notice at Collection</span></a>
+                            </li>
+                            <li>
+                                <div class="link-wrapper">
+                                    <a class="a1" href="https://www.atlassian.com/legal/cloud-terms-of-service"
+                                        target="_blank" rel="noreferrer"><span>Terms</span></a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="link-wrapper"><a class="a1" href="https://www.atlassian.com/legal/impressum"
+                                        target="_blank" rel="noreferrer"><span>Impressum</span></a>
+                                </div>
+                            </li>
+                        </ul>
+                        <span class="ls"><label for="language-dropdown">Language selector</label></span>
+                        <div class="_1e0c116y" style="display: inline-flex;">
+                            <div class="ls1"><span id="react-select-2-live-region" class="ls2"></span><span
+                                    aria-live="polite" aria-atomic="false" aria-relevant="additions text"
+                                    class="ls2"></span>
+                                <div class="ls3"><svg id="icon-wac-language-globe" width="18px" height="18px"
+                                        viewBox="0 0 25 24" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                        xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <defs>
+                                            <path
+                                                d="M2.33514634,13.0909091 C2.80456741,17.1674997 5.87382928,20.4918664 9.91593939,21.5020963 C8.18760918,19.0069673 7.13798566,16.119686 6.87807529,13.0909091 L2.33514634,13.0909091 Z M2.33514634,10.9090909 L6.8751035,10.9090909 C7.12988231,7.89470494 8.18079774,5.00118821 9.91557751,2.49799419 C5.87364609,3.50833206 2.8045534,6.83262197 2.33514634,10.9090909 Z M22.6648537,10.9090909 C22.1954326,6.83250032 19.1261707,3.50813364 15.0840606,2.49790374 C16.8123908,4.99303266 17.8620143,7.88031403 18.1219247,10.9090909 L22.6648537,10.9090909 Z M22.6648537,13.0909091 L18.1248965,13.0909091 C17.8701177,16.1052951 16.8192023,18.9988118 15.0844225,21.5020058 C19.1263539,20.4916679 22.1954466,17.167378 22.6648537,13.0909091 Z M9.15315078,10.9090909 L15.843646,10.9090909 C15.5581939,7.94925479 14.3973512,5.12935736 12.4999751,2.78265622 C10.595448,5.13778492 9.43302782,7.96652031 9.15315078,10.9090909 Z M15.8468492,13.0909091 L9.15635402,13.0909091 C9.44180608,16.0507452 10.6026488,18.8706426 12.5000249,21.2173438 C14.404552,18.8622151 15.5669722,16.0334797 15.8468492,13.0909091 Z M12.5,24 C5.59644063,24 0,18.627417 0,12 C0,5.372583 5.59644063,0 12.5,0 C19.4035594,0 25,5.372583 25,12 C25,18.627417 19.4035594,24 12.5,24 Z"
+                                                id="path-1"></path>
+                                        </defs>
+                                        <g id="Final-Designs-" stroke="none" stroke-width="1" fill="none"
+                                            fill-rule="evenodd">
+                                            <g id="WAC-Language-Banner-Drop-Down-Icon"
+                                                transform="translate(-426.000000, -19.000000)">
+                                                <g id="Alert-banner" transform="translate(-4.000000, 0.000000)">
+                                                    <g id="language-globe-icon"
+                                                        transform="translate(430.000000, 19.000000)">
+                                                        <mask id="mask-2" fill="#ffffff">
+                                                            <use xlink:href="#path-1"></use>
+                                                        </mask>
+                                                        <g id="language-globe-icon-color" mask="url(#mask-2)"
+                                                            fill="#42526e">
+                                                            <g transform="translate(-1.000000, -1.000000)"
+                                                                id="Rectangle">
+                                                                <rect x="0" y="0" width="27.2727273"
+                                                                    height="26.4827586"></rect>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                    <div class="ls4">
+                                        <div class=" ls5">English</div>
+                                        <div class="ls6" data-value=""><input class="" autocapitalize="none"
+                                                autocomplete="off" autocorrect="off" id="language-dropdown"
+                                                spellcheck="false" tabindex="0" type="text" aria-autocomplete="list"
+                                                aria-expanded="false" aria-haspopup="true"
+                                                aria-label="Choose your language" role="combobox" value=""
+                                                style="color: inherit; background: 0px center; opacity: 1; width: 100%; grid-area: 1 / 2; font: inherit; min-width: 2px; border: 0px; margin: 0px; outline: 0px; padding: 0px;">
+                                        </div>
+                                    </div>
+                                    <div class="ls7"><span
+                                            style="align-self: stretch; width: 1px; box-sizing: border-box;"></span>
+                                        <div style="display: flex; transition: color 150ms; box-sizing: border-box; font-size: 1.5rem; height: 40px;"
+                                            aria-hidden="true">▾</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src=" index.js"></script>
+</body>
+
+</html>
