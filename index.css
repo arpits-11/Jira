@@ -1155,3 +1155,156 @@
     box-sizing: border-box;
     margin-left: 4px;
 }
+
+/* ===== RESPONSIVE STYLES ===== */
+
+/* Tablet: 768px and below */
+@media (max-width: 768px) {
+
+  /* Header padding */
+  .header1 {
+    padding-left: 20px;
+  }
+
+  /* Tab buttons — allow wrapping */
+  .main2 {
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 30px;
+  }
+
+  /* Hero section — stack vertically */
+  .main3 {
+    flex-direction: column;
+    padding: 0 20px;
+  }
+
+  /* Hero heading */
+  .h1 {
+    font-size: 2rem;
+    line-height: 2.5rem;
+    margin: 30px 0 16px 0;
+  }
+
+  /* Hero form width */
+  .sup {
+    max-width: 100%;
+  }
+
+  /* Product image */
+  .pic {
+    margin-top: 2rem;
+    padding-right: 0;
+    width: 100%;
+  }
+
+  /* Content sections — remove fixed pt width, stack to single column */
+  .sc3, .sc5, .sc7, .sc9,
+  .tab1, .tg, .tp1 {
+    width: 100%;
+    padding-inline: 20px;
+    grid-template-columns: 1fr;
+  }
+
+  /* Section margins */
+  .sc2, .sc4, .sc6 {
+    margin: 40px 0;
+  }
+
+  /* Feature grid — 2 columns on tablet */
+  .box {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Section headings */
+  .text-section h2 {
+    font-size: 1.5rem;
+  }
+
+  /* h2 centered section */
+  .h2 {
+    font-size: 1.75rem;
+    grid-column: 1 / -1;
+  }
+
+  /* Footer links */
+  .footer3 {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .footer3 ul {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  /* Footer columns */
+  .box {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Main section with margin */
+  .main3 > div {
+    margin: 0 !important;
+  }
+}
+
+/* Mobile: 480px and below */
+@media (max-width: 480px) {
+
+  /* Hero heading */
+  .h1 {
+    font-size: 1.6rem;
+    line-height: 2rem;
+  }
+
+  /* Tab buttons — smaller */
+  .bt1, .bt2, .bt3, .bt4, .bt5, .bt6, .bt7 {
+    width: 70px;
+    font-size: 0.75rem;
+  }
+
+  /* Sign-in buttons side by side */
+  .bx {
+    grid-template-columns: 1fr;
+  }
+
+  /* Feature grid — single column */
+  .box {
+    grid-template-columns: 1fr;
+  }
+
+  /* Section headings */
+  .text-section h2 {
+    font-size: 1.25rem;
+  }
+
+  .h2 {
+    font-size: 1.4rem;
+  }
+
+  /* Tab filter buttons */
+  .bt11, .bt12, .bt13, .bt14 {
+    font-size: 1rem;
+    padding: 8px 16px;
+  }
+
+  /* Footer copyright */
+  .footer3 {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  /* Poster logos */
+  .poster {
+    gap: 1rem;
+  }
+}
+
+/* Fix images overflowing on mobile */
+img {
+  /* max-width: 100%; */
+  height: auto;
+  display: block;
+}
