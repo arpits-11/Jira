@@ -689,13 +689,6 @@
     border-radius: 50px;
 }
 
-/* .tb tab-panel {
-    margin-top: 20px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 0;
-} */
-
 .tp1 {
     width: 954pt;
     padding-inline-end: 60px;
@@ -756,21 +749,6 @@
     
 }
 
-/* .sc {
-    background-color: #cfe1fd;
-    width: 100%;
-    padding: 64px 0 16px;
-    --_bwa4xl: 100%;
-    --_1cdekw0: #cfe1fd;
-    --_1o5bebe: 64px 0 16px;
-    --_1dlh24j: 32px 0 16px;
-    --_1nsshok: 16px 0;
-    --_1e6od0m: 16px 0;
-    --_1u1sozo: 16px 0 64px;
-    --_1div133: 16px 0 32px;
-    --_1rnt45i: 16px 0 64px;
-    --_15kis35: 16px 0 64px;
-} */
 
 .sc1 {
     background-color: #cfe1fd;
@@ -1156,7 +1134,7 @@
     margin-left: 4px;
 }
 
-/* ===== RESPONSIVE STYLES ===== */
+/* RESPONSIVE STYLES  */
 
 /* Tablet: 768px and below */
 @media (max-width: 768px) {
@@ -1302,9 +1280,16 @@
   }
 }
 
-/* Fix images overflowing on mobile */
+
 img {
-  /* max-width: 100%; */
+  max-width: 100%;
   height: auto;
   display: block;
+}
+
+@media (min-width: 769px) {
+  .tp1 img {
+    max-width: none;
+    width: auto;
+  }
 }
