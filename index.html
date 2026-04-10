@@ -9,6 +9,428 @@
 </head>
 
 <body>
+
+    <!-- LOGIN PAGE -->
+    <div id="login-page" style="display:none;">
+        <div
+            style="font-family:system-ui; background:#f4f5f7; display:flex; justify-content:center; align-items:center; min-height:100vh;">
+            <div
+                style="background:white; padding:40px; border-radius:12px; box-shadow:0 4px 20px rgba(0,0,0,0.1); width:100%; max-width:400px;">
+                <h2 style="margin-bottom:24px; color:#253858; text-align:center;">Welcome Back</h2>
+                <label style="font-size:14px; color:#253858; display:block; margin-bottom:4px;">Email</label>
+                <input type="email" id="login-email" placeholder="you@company.com"
+                    style="width:100%; padding:10px 14px; border:1px solid #ddd; border-radius:6px; font-size:16px; margin-bottom:16px; font-family:system-ui;">
+                <label style="font-size:14px; color:#253858; display:block; margin-bottom:4px;">Password</label>
+                <input type="password" id="login-password" placeholder="Your password"
+                    style="width:100%; padding:10px 14px; border:1px solid #ddd; border-radius:6px; font-size:16px; margin-bottom:8px; font-family:system-ui;">
+                <div id="login-error" style="color:red; font-size:13px; margin-bottom:12px;"></div>
+                <button onclick="login()"
+                    style="width:100%; padding:12px; background:dodgerblue; color:white; border:none; border-radius:6px; font-size:16px; cursor:pointer; font-family:system-ui; font-weight:500;">
+                    Login
+                </button>
+                <p style="text-align:center; margin-top:16px; font-size:14px;">
+                    Don't have an account?
+                    <a href="#" onclick="showPage('register-page')"
+                        style="color:dodgerblue; text-decoration:none;">Register</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- REGISTER PAGE -->
+    <div id="register-page" style="display:none;">
+        <div
+            style="font-family:system-ui; background:#f4f5f7; display:flex; justify-content:center; align-items:center; min-height:100vh;">
+            <div
+                style="background:white; padding:40px; border-radius:12px; box-shadow:0 4px 20px rgba(0,0,0,0.1); width:100%; max-width:400px;">
+                <h2 style="margin-bottom:24px; color:#253858; text-align:center;">Create Account</h2>
+                <label style="font-size:14px; color:#253858; display:block; margin-bottom:4px;">Full Name</label>
+                <input type="text" id="reg-name" placeholder="John Doe"
+                    style="width:100%; padding:10px 14px; border:1px solid #ddd; border-radius:6px; font-size:16px; margin-bottom:16px; font-family:system-ui;">
+                <label style="font-size:14px; color:#253858; display:block; margin-bottom:4px;">Email</label>
+                <input type="email" id="reg-email" placeholder="you@company.com"
+                    style="width:100%; padding:10px 14px; border:1px solid #ddd; border-radius:6px; font-size:16px; margin-bottom:16px; font-family:system-ui;">
+                <label style="font-size:14px; color:#253858; display:block; margin-bottom:4px;">Password</label>
+                <input type="password" id="reg-password" placeholder="Min 6 characters"
+                    style="width:100%; padding:10px 14px; border:1px solid #ddd; border-radius:6px; font-size:16px; margin-bottom:8px; font-family:system-ui;">
+                <div id="reg-error" style="color:red; font-size:13px; margin-bottom:12px;"></div>
+                <button onclick="register()"
+                    style="width:100%; padding:12px; background:dodgerblue; color:white; border:none; border-radius:6px; font-size:16px; cursor:pointer; font-family:system-ui; font-weight:500;">
+                    Register
+                </button>
+                <p style="text-align:center; margin-top:16px; font-size:14px;">
+                    Already have an account?
+                    <a href="#" onclick="showPage('login-page')"
+                        style="color:dodgerblue; text-decoration:none;">Login</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- DASHBOARD PAGE -->
+    <div id="dashboard-page" style="display:none;">
+        <div style="font-family:system-ui; background:#f4f5f7; min-height:100vh;">
+
+            <!-- Navbar -->
+            <div
+                style="background:white; padding:12px 24px; display:flex; justify-content:space-between; align-items:center; box-shadow:0 1px 4px rgba(0,0,0,0.1);">
+                <h1 style="color:dodgerblue; font-size:1.4rem;">Jira Clone</h1>
+                <div style="display:flex; align-items:center; gap:16px;">
+                    <span id="welcome-msg" style="font-size:14px; color:#253858;"></span>
+                    <!-- Notification Bell -->
+                    <div style="position:relative; display:inline-block;">
+                        <button onclick="toggleNotifications()"
+                            style="background:none; border:1px solid #ddd; padding:6px 12px; border-radius:6px; cursor:pointer; font-size:18px; position:relative;">
+                            🔔
+                            <span id="notif-badge"
+                                style="display:none; position:absolute; top:-6px; right:-6px; background:#de350b; color:white; border-radius:50%; width:18px; height:18px; font-size:11px; font-family:system-ui; font-weight:700; align-items:center; justify-content:center;">
+                                0
+                            </span>
+                        </button>
+                        <!-- Notifications Dropdown -->
+                        <div id="notif-dropdown"
+                            style="display:none; position:absolute; right:0; top:44px; background:white; border-radius:10px; box-shadow:0 4px 20px rgba(0,0,0,0.15); width:320px; z-index:100; max-height:400px; overflow-y:auto;">
+                            <div
+                                style="padding:12px 16px; border-bottom:1px solid #eee; display:flex; justify-content:space-between; align-items:center;">
+                                <span style="font-weight:600; color:#253858; font-family:system-ui; font-size:14px;">🔔
+                                    Notifications</span>
+                                <button onclick="markAllRead()"
+                                    style="background:none; border:none; color:dodgerblue; cursor:pointer; font-size:12px; font-family:system-ui;">
+                                    Mark all read
+                                </button>
+                            </div>
+                            <div id="notif-list">
+                                <p
+                                    style="padding:16px; text-align:center; color:#5e6c84; font-size:14px; font-family:system-ui;">
+                                    No notifications</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button onclick="showPage('profile-page'); loadProfile();"
+                        style="background:none; border:1px solid #ddd; padding:6px 14px; border-radius:6px; cursor:pointer; font-family:system-ui; color:#253858;">
+                        👤 Profile
+                    </button>
+                    <button onclick="logout()"
+                        style="background:none; border:1px solid #ddd; padding:6px 14px; border-radius:6px; cursor:pointer; font-family:system-ui; color:#253858;">
+                        Logout
+                    </button>
+
+                </div>
+            </div>
+
+            <!-- Board -->
+            <div style="padding:24px;">
+                <!-- <p style="font-size:1.5rem; color:#253858; margin-bottom:16px; font-weight:600;">My Project Board</p> -->
+
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+                    <p style="font-size:1.5rem; color:#253858; margin:0; font-weight:600;">My Project Board</p>
+                    <button onclick="exportToExcel()"
+                        style="padding:8px 16px; background:#36b37e; color:white; border:none; border-radius:6px; cursor:pointer; font-family:system-ui; font-weight:500; font-size:14px;">
+                        📥 Export to Excel
+                    </button>
+                </div>
+                <!-- Add Task -->
+                <div
+                    style="background:white; padding:16px; border-radius:8px; margin-bottom:24px; display:flex; gap:10px; flex-wrap:wrap; box-shadow:0 1px 4px rgba(0,0,0,0.08);">
+                    <input type="text" id="task-input" placeholder="Enter task title..."
+                        style="flex:1; min-width:200px; padding:8px 12px; border:1px solid #ddd; border-radius:6px; font-size:14px; font-family:system-ui;">
+                    <div style="display:flex; gap:4px; align-items:center;">
+                        <select id="priority-select"
+                            style="padding:8px 12px; border:1px solid #ddd; border-radius:6px; font-size:14px; font-family:system-ui;">
+                            <option value="low">🟢 Low</option>
+                            <option value="medium" selected>🟡 Medium</option>
+                            <option value="high">🔴 High</option>
+                        </select>
+                        <button onclick="addCustomPriority()" title="Add custom priority"
+                            style="padding:8px 10px; background:dodgerblue; color:white; border:none; border-radius:6px; cursor:pointer; font-size:16px; font-weight:700; font-family:system-ui;">
+                            +
+                        </button>
+                    </div>
+                    <div style="display:flex; gap:4px; align-items:center;">
+                        <select id="category-select"
+                            style="padding:8px 12px; border:1px solid #ddd; border-radius:6px; font-size:14px; font-family:system-ui;">
+                            <option value="General">General</option>
+                            <option value="Design">Design</option>
+                            <option value="Development">Development</option>
+                            <option value="Marketing">Marketing</option>
+                        </select>
+                        <button onclick="addCustomCategory()" title="Add custom category"
+                            style="padding:8px 10px; background:dodgerblue; color:white; border:none; border-radius:6px; cursor:pointer; font-size:16px; font-weight:700; font-family:system-ui;">
+                            +
+                        </button>
+                    </div>
+                    <div style="display:flex; gap:4px; align-items:center;">
+                        <select id="assign-select"
+                            style="padding:8px 12px; border:1px solid #ddd; border-radius:6px; font-size:14px; font-family:system-ui; flex:1;">
+                            <option value="">Unassigned</option>
+                        </select>
+                        <button onclick="openInvitePopup()" title="Add user by email"
+                            style="padding:8px 10px; background:dodgerblue; color:white; border:none; border-radius:6px; cursor:pointer; font-size:16px; font-weight:700;">
+                            +
+                        </button>
+                    </div>
+                    <button onclick="addTask()"
+                        style="padding:8px 20px; background:dodgerblue; color:white; border:none; border-radius:6px; cursor:pointer; font-family:system-ui; font-weight:500;">
+                        + Add Task
+                    </button>
+                </div>
+
+                <!-- Activity Log -->
+                <div
+                    style="margin-top:32px; background:white; border-radius:10px; padding:20px; box-shadow:0 1px 4px rgba(0,0,0,0.08);">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+                        <h3 style="margin:0; color:#253858; font-family:system-ui; font-size:1rem;">📋 Activity Log</h3>
+                        <button onclick="loadActivity()"
+                            style="background:none; border:1px solid #ddd; padding:4px 12px; border-radius:6px; cursor:pointer; font-family:system-ui; font-size:13px; color:#5e6c84;">
+                            🔄 Refresh
+                        </button>
+                    </div>
+                    <div id="activity-list">
+                        <p style="color:#5e6c84; font-size:14px; font-family:system-ui; text-align:center;">Loading
+                            activity...</p>
+                    </div>
+                </div>
+                <!-- Summary Cards -->
+                <div id="summary-cards"
+                    style="display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:24px;">
+                    <div
+                        style="background:white; border-radius:10px; padding:16px; box-shadow:0 1px 4px rgba(0,0,0,0.08); border-left:4px solid dodgerblue;">
+                        <div style="font-size:13px; color:#5e6c84; font-family:system-ui; margin-bottom:6px;">Total
+                            Tasks</div>
+                        <div id="stat-total"
+                            style="font-size:2rem; font-weight:700; color:#253858; font-family:system-ui;">0</div>
+                    </div>
+                    <div
+                        style="background:white; border-radius:10px; padding:16px; box-shadow:0 1px 4px rgba(0,0,0,0.08); border-left:4px solid #36b37e;">
+                        <div style="font-size:13px; color:#5e6c84; font-family:system-ui; margin-bottom:6px;">✅ Done
+                        </div>
+                        <div id="stat-done-count"
+                            style="font-size:2rem; font-weight:700; color:#36b37e; font-family:system-ui;">0</div>
+                    </div>
+                    <div
+                        style="background:white; border-radius:10px; padding:16px; box-shadow:0 1px 4px rgba(0,0,0,0.08); border-left:4px solid #ff8b00;">
+                        <div style="font-size:13px; color:#5e6c84; font-family:system-ui; margin-bottom:6px;">⏳ Pending
+                        </div>
+                        <div id="stat-pending"
+                            style="font-size:2rem; font-weight:700; color:#ff8b00; font-family:system-ui;">0</div>
+                    </div>
+                    <div
+                        style="background:white; border-radius:10px; padding:16px; box-shadow:0 1px 4px rgba(0,0,0,0.08); border-left:4px solid #de350b;">
+                        <div style="font-size:13px; color:#5e6c84; font-family:system-ui; margin-bottom:6px;">🔴 High
+                            Priority</div>
+                        <div id="stat-high"
+                            style="font-size:2rem; font-weight:700; color:#de350b; font-family:system-ui;">0</div>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap;">
+                    <button onclick="filterByCategory('All')" id="cat-all"
+                        style="padding:6px 16px; border-radius:20px; border:none; background:dodgerblue; color:white; cursor:pointer; font-family:system-ui;">
+                        All
+                    </button>
+                    <button onclick="filterMyTasks()" id="cat-mytasks"
+                        style="padding:6px 16px; border-radius:20px; border:1px solid #ddd; background:white; cursor:pointer; font-family:system-ui;">
+                        👤 My Tasks
+                    </button>
+                    <button onclick="filterByCategory('General')" id="cat-general"
+                        style="padding:6px 16px; border-radius:20px; border:1px solid #ddd; background:white; cursor:pointer; font-family:system-ui;">
+                        General
+                    </button>
+                    <button onclick="filterByCategory('Design')" id="cat-design"
+                        style="padding:6px 16px; border-radius:20px; border:1px solid #ddd; background:white; cursor:pointer; font-family:system-ui;">
+                        Design
+                    </button>
+                    <button onclick="filterByCategory('Development')" id="cat-development"
+                        style="padding:6px 16px; border-radius:20px; border:1px solid #ddd; background:white; cursor:pointer; font-family:system-ui;">
+                        Development
+                    </button>
+                    <button onclick="filterByCategory('Marketing')" id="cat-marketing"
+                        style="padding:6px 16px; border-radius:20px; border:1px solid #ddd; background:white; cursor:pointer; font-family:system-ui;">
+                        Marketing
+                    </button>
+                </div>
+
+                <!-- Priority Filter -->
+                <div style="display:flex; gap:8px; margin-bottom:16px; flex-wrap:wrap; align-items:center;">
+                    <span
+                        style="font-size:13px; color:#5e6c84; font-family:system-ui; font-weight:600;">Priority:</span>
+                    <button onclick="filterByPriority('all')" id="pri-all"
+                        style="padding:6px 16px; border-radius:20px; border:none; background:dodgerblue; color:white; cursor:pointer; font-family:system-ui;">
+                        All
+                    </button>
+                    <button onclick="filterByPriority('high')" id="pri-high"
+                        style="padding:6px 16px; border-radius:20px; border:1px solid #ddd; background:white; color:#de350b; cursor:pointer; font-family:system-ui; font-weight:600;">
+                        🔴 High
+                    </button>
+                    <button onclick="filterByPriority('medium')" id="pri-medium"
+                        style="padding:6px 16px; border-radius:20px; border:1px solid #ddd; background:white; color:#ff8b00; cursor:pointer; font-family:system-ui; font-weight:600;">
+                        🟡 Medium
+                    </button>
+                    <button onclick="filterByPriority('low')" id="pri-low"
+                        style="padding:6px 16px; border-radius:20px; border:1px solid #ddd; background:white; color:#006644; cursor:pointer; font-family:system-ui; font-weight:600;">
+                        🟢 Low
+                    </button>
+                </div>
+                <!-- Columns -->
+                <div id="board-columns" style="display:flex; gap:16px; overflow-x:auto; padding-bottom:8px;">
+
+                    <!-- To Do Column -->
+                    <div style="background:#ebecf0; border-radius:8px; padding:12px; min-height:400px; min-width:280px; flex-shrink:0;"
+                        ondragover="allowDrop(event)" ondragleave="dragLeave(event)" ondrop="dropTask(event,'todo')">
+                        <div
+                            style="font-weight:600; font-size:14px; color:#253858; margin-bottom:12px; text-transform:uppercase; display:flex; justify-content:space-between; align-items:center;">
+                            To Do
+                            <span id="todo-count"
+                                style="background:#c1c7d0; border-radius:50%; width:22px; height:22px; display:flex; align-items:center; justify-content:center; font-size:12px;">0</span>
+                        </div>
+                        <div id="todo-col"></div>
+                    </div>
+
+                    <!-- In Progress Column -->
+                    <div style="background:#ebecf0; border-radius:8px; padding:12px; min-height:400px; min-width:280px; flex-shrink:0;"
+                        ondragover="allowDrop(event)" ondragleave="dragLeave(event)"
+                        ondrop="dropTask(event,'inprogress')">
+                        <div
+                            style="font-weight:600; font-size:14px; color:#253858; margin-bottom:12px; text-transform:uppercase; display:flex; justify-content:space-between; align-items:center;">
+                            In Progress
+                            <span id="inprogress-count"
+                                style="background:#c1c7d0; border-radius:50%; width:22px; height:22px; display:flex; align-items:center; justify-content:center; font-size:12px;">0</span>
+                        </div>
+                        <div id="inprogress-col"></div>
+                    </div>
+
+                    <!-- Done Column -->
+                    <div style="background:#ebecf0; border-radius:8px; padding:12px; min-height:400px; min-width:280px; flex-shrink:0;"
+                        ondragover="allowDrop(event)" ondragleave="dragLeave(event)" ondrop="dropTask(event,'done')">
+                        <div
+                            style="font-weight:600; font-size:14px; color:#253858; margin-bottom:12px; text-transform:uppercase; display:flex; justify-content:space-between; align-items:center;">
+                            Done
+                            <span id="done-count"
+                                style="background:#c1c7d0; border-radius:50%; width:22px; height:22px; display:flex; align-items:center; justify-content:center; font-size:12px;">0</span>
+                        </div>
+                        <div id="done-col"></div>
+                    </div>
+
+                    <!-- Custom columns will be added here dynamically -->
+                    <div id="custom-columns"></div>
+
+                    <!-- Add Column Button -->
+                    <div style="flex-shrink:0; display:flex; align-items:flex-start; padding-top:4px;">
+                        <button onclick="openAddColumnPopup()"
+                            style="background:#ebecf0; border:2px dashed #c1c7d0; border-radius:8px; padding:12px 20px; cursor:pointer; font-family:system-ui; color:#5e6c84; font-size:14px; font-weight:600; min-height:60px; white-space:nowrap; transition:all 0.2s;">
+                            ➕ Add Column
+                        </button>
+                    </div>
+
+                </div>
+
+                <!-- Add Column Popup -->
+                <div id="column-popup"
+                    style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.4); z-index:9999; justify-content:center; align-items:center;">
+                    <div
+                        style="background:white; border-radius:12px; padding:28px; width:100%; max-width:360px; box-shadow:0 8px 32px rgba(0,0,0,0.2); margin:20px;">
+                        <h3 style="color:#253858; margin:0 0 16px; font-size:1rem;">➕ Add New Column</h3>
+                        <input type="text" id="column-input" placeholder="e.g. In Review, Testing, Blocked..."
+                            style="width:100%; padding:10px 12px; border:1px solid #ddd; border-radius:6px; font-size:14px; font-family:system-ui; box-sizing:border-box; margin-bottom:8px;"
+                            onkeydown="if(event.key==='Enter') confirmAddColumn()">
+                        <div id="column-error" style="color:red; font-size:12px; margin-bottom:12px; min-height:16px;">
+                        </div>
+                        <div style="display:flex; gap:8px; justify-content:flex-end;">
+                            <button onclick="closeColumnPopup()"
+                                style="padding:8px 16px; background:#f4f5f7; border:1px solid #ddd; border-radius:6px; cursor:pointer; font-family:system-ui;">
+                                Cancel
+                            </button>
+                            <button onclick="confirmAddColumn()"
+                                style="padding:8px 16px; background:dodgerblue; color:white; border:none; border-radius:6px; cursor:pointer; font-family:system-ui; font-weight:500;">
+                                Add Column
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="profile-page" style="display: none;">
+        <div style="font-family: system-ui; background-color: #f4f5f7; min-height: 100vh;">
+
+            <div
+                style="background: white; padding: 12px 24px; display: flex; justify-content: space-between; align-items:center; box-shadow:0 1px 4px rgba(0,0,0,0.1); ">
+                <h1 style="color: dodgerblue; font-size: 1.4rem;">Jira Clone</h1>
+                <div style="display: flex; gap: 12px;">
+                    <button onclick="showPage('dashboard-page'); loadTasks()"
+                        style="background: none; border: 1px solid #ddd; padding: 6px 14px;  border-radius:6px; cursor:pointer; font-family:system-ui;">
+                        ← Back to Board
+                    </button>
+                    <button onclick="logout()"
+                        style="background: none; border: 1px solid #ddd; padding: 6px 14px;  border-radius:6px; cursor:pointer; font-family:system-ui;">
+                        Logout
+                    </button>
+                </div>
+            </div>
+            <div style="max-width: 600px; margin: 40px auto; padding: 0 20px;">
+                <div
+                    style="background: white; border-radius: 12px; box-shadow:0 4px 20px rgba(0,0,0,0.08); overflow:hidden;">
+                    <div style="background: dodgerblue; padding: 40px; text-align: center;">
+                        <div id="profile-avatar"
+                            style="width: 80px; border-radius: 50%; background: white; color:dodgerblue; font-size:2rem; font-weight:700; display:flex; align-items:center; justify-content:center; margin:0 auto 12px; ">
+                            ?
+                        </div>
+                        <h2 id="profile-name-display" style="color:white; margin:0; font-size:1.4rem;">Loading...</h2>
+                        <p id="profile-email-display"
+                            style="color:rgba(255,255,255,0.8); margin:4px 0 0; font-size:14px;"></p>
+                    </div>
+                    <div style="padding: 32px;">
+                        <h3 style="color: #253858; margin-bottom: 20px; font-size: 1.1rem;">Edit Profile</h3>
+
+                        <label style="font-size: 14px; color: #253858; display: block; margin-bottom: 4px;">Full
+                            Name</label>
+                        <input type="text" id="profile-name"
+                            style="width:100%; padding:10px 14px; border:1px solid #ddd; border-radius:6px; font-size:16px; margin-bottom:16px; font-family:system-ui; box-sizing:border-box;">
+
+                        <label style="font-size: 14px; color: #253858; display: block; margin-bottom: 4px;">Email
+                            (cannot change)</label>
+                        <input type="text" id="profile-email" disabled
+                            style="width:100%; padding:10px 14px; border:1px solid #eee; border-radius:6px; font-size:16px; margin-bottom:16px; font-family:system-ui; background:#f4f5f7; box-sizing:border-box;">
+
+                        <label
+                            style="font-size: 14px; color: #253858; display: block; margin-bottom: 4px;">Phone</label>
+                        <input type="text" id="profile-phone" placeholder="+91 XXXXX XXXXX"
+                            style="width:100%; padding:10px 14px; border:1px solid #ddd; border-radius:6px; font-size:16px; margin-bottom:16px; font-family:system-ui; box-sizing:border-box;">
+
+                        <label style="font-size: 14px; color: #253858; display: block; margin-bottom: 4px;">Bio</label>
+                        <textarea id="profile-bio" placeholder="Tell us about yourself...." rows="3"
+                            style="width:100%; padding:10px 14px; border:1px solid #ddd; border-radius:6px; font-size:16px; margin-bottom:16px; font-family:system-ui; resize:vertical; box-sizing:border-box;">
+                        </textarea>
+
+                        <div id="profile-msg" style="color: green; font-size: 14px; margin-bottom: 12px;"></div>
+
+                        <button onclick="saveProfile()"
+                            style="width:100%; padding:12px; background:dodgerblue; color:white; border:none; border-radius:6px; font-size:16px; cursor:pointer; font-family:system-ui; font-weight:500;">
+                            Save Changes
+                        </button>
+                    </div>
+                    <div
+                        style="padding:0 32px 32px; display:grid; grid-template-columns:repeat(3,1fr); gap:12px; text-align:center;">
+                        <div style="background: #f4f5f7; border-radius: 8px; padding: 16px;">
+                            <div id="stat-todo" style="font-size:1.8rem; font-weight:700; color:#253858;">0</div>
+                            <div style="font-size: 12px; color: #5e6c84;">To Do</div>
+                        </div>
+                        <div style="background: #f4f5f7; border-radius: 8px; padding: 16px;">
+                            <div id="stat-inprogress" style="font-size:1.8rem; font-weight:700; color:dodgerblue;">0
+                            </div>
+                            <div style="font-size: 12px; color: #5e6c84;">In Progress</div>
+                        </div>
+                        <div style="background: #f4f5f7; border-radius: 8px; padding: 16px;">
+                            <div id="stat-done" style="font-size:1.8rem; font-weight:700; color: #36b37e;">0</div>
+                            <div style="font-size: 12px; color: #5e6c84;">Done</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div id="root">
         <main id="content">
             <div class="header">
@@ -113,7 +535,7 @@
                                                     aria-labelledby="email-uid1-label" id="email-uid1"
                                                     autocomplete="email" type="email" data-ds--text-field--input=" true"
                                                     data-testid="email_field" name="email" placeholder="you@company.com"
-                                                    required class="in" value>
+                                                     class="in" value>
                                             </div>
                                             <div id="account_creation_email_help_text" class="in1"
                                                 style="font-family: system-ui;">Using a work email
@@ -122,7 +544,9 @@
                                             </div>
                                         </div>
                                         <div>
-                                            <button class="bt8" type="submit">Sign up</button>
+                                            <button class="bt8" onclick="showPage('login-page')">Sign up</button>
+
+                                            <!-- <button class="bt8" type="submit">Sign up</button> -->
                                         </div>
                                 </form>
                                 <div class="ln">
@@ -133,8 +557,24 @@
                                 <div>
                                     <ul role="list" class="bx">
                                         <li>
-                                            <button type="button" aria-label="sign up with google" class="bt9">
-                                                <span>Goggle</span>
+                                            <button type="button" aria-label="sign up with google" class="bt9"
+                                                onclick="window.location.href='http://localhost:5000/auth/google'">
+                                                <svg aria-hidden="true" viewBox="0 0 18 18"
+                                                    style="width:18px; height:18px;">
+                                                    <path
+                                                        d="M17.64 9.205c0-.639-.057-1.252-.164-1.841H9v3.481h4.844a4.14 4.14 0 0 1-1.796 2.716v2.259h2.908c1.702-1.567 2.684-3.875 2.684-6.615Z"
+                                                        fill="#4285F4"></path>
+                                                    <path
+                                                        d="M9 18c2.43 0 4.467-.806 5.956-2.18l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 0 0 9 18Z"
+                                                        fill="#34A853"></path>
+                                                    <path
+                                                        d="M3.964 10.71A5.41 5.41 0 0 1 3.682 9c0-.593.102-1.17.282-1.71V4.958H.957A8.996 8.996 0 0 0 0 9c0 1.452.348 2.827.957 4.042l3.007-2.332Z"
+                                                        fill="#FBBC05"></path>
+                                                    <path
+                                                        d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 0 0 .957 4.958L3.964 7.29C4.672 5.163 6.656 3.58 9 3.58Z"
+                                                        fill="#EA4335"></path>
+                                                </svg>
+                                                <span>Google</span>
                                             </button>
                                         </li>
                                         <li>
@@ -154,7 +594,6 @@
                                     </p>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -197,7 +636,6 @@
                                 data-product-key="jiraSoftware-PaidLpJiraFeatures" class="bt14">Report</button>
                         </div>
                     </div>
-
                 </div>
                 <div class="tg">
                     <div class="tg1" style="color: #1C2B42;">
@@ -965,6 +1403,173 @@
         </footer>
     </div>
     <script src="index.js"></script>
+    <!-- TASK DETAIL MODAL -->
+    <div id="task-modal"
+        style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:999; justify-content:center; align-items:center;">
+        <div
+            style="background:white; border-radius:12px; width:100%; max-width:560px; max-height:85vh; overflow-y:auto; margin:20px; box-shadow:0 8px 32px rgba(0,0,0,0.2);">
+
+            <!-- Modal Header -->
+            <div
+                style="padding:20px 24px; border-bottom:1px solid #eee; display:flex; justify-content:space-between; align-items:center; position:sticky; top:0; background:white; z-index:1;">
+                <h3 id="modal-task-title" style="color:#253858; margin:0; font-size:1.1rem;"></h3>
+                <div style="display:flex; gap:8px; align-items:center;">
+                    <!-- Edit / Save buttons -->
+                    <button id="edit-btn" onclick="toggleEditMode()"
+                        style="padding:6px 14px; background:#f4f5f7; border:1px solid #ddd; border-radius:6px; cursor:pointer; font-family:system-ui; font-size:13px; color:#253858;">
+                        ✏️ Edit
+                    </button>
+                    <button id="save-btn" onclick="saveTaskEdit()"
+                        style="display:none; padding:6px 14px; background:dodgerblue; border:none; border-radius:6px; cursor:pointer; font-family:system-ui; font-size:13px; color:white;">
+                        💾 Save
+                    </button>
+                    <button id="cancel-btn" onclick="cancelEditMode()"
+                        style="display:none; padding:6px 14px; background:#f4f5f7; border:1px solid #ddd; border-radius:6px; cursor:pointer; font-family:system-ui; font-size:13px; color:#253858;">
+                        Cancel
+                    </button>
+                    <button onclick="closeModal()"
+                        style="background:none; border:none; font-size:1.5rem; cursor:pointer; color:#5e6c84;">✕</button>
+                </div>
+            </div>
+
+            <!-- View Mode — Task Info -->
+            <div id="view-mode" style="padding:20px 24px; border-bottom:1px solid #eee;">
+                <div style="display:flex; gap:12px; flex-wrap:wrap;">
+                    <span id="modal-task-priority"
+                        style="font-size:12px; padding:4px 10px; border-radius:20px; font-weight:600;"></span>
+                    <span id="modal-task-status"
+                        style="font-size:12px; padding:4px 10px; border-radius:20px; background:#e3fcef; color:#006644; font-weight:600;"></span>
+                    <span id="modal-task-category"
+                        style="font-size:12px; padding:4px 10px; border-radius:20px; background:#eae6ff; color:#403294; font-weight:600;"></span>
+                    <span id="modal-task-assignee"
+                        style="font-size:12px; padding:4px 10px; border-radius:20px; background:#e8f0fe; color:#1a73e8; font-weight:600;"></span>
+                </div>
+            </div>
+
+            <!-- Edit Mode — Edit Form (hidden by default) -->
+            <div id="edit-mode" style="display:none; padding:20px 24px; border-bottom:1px solid #eee;">
+
+                <label style="font-size:13px; color:#5e6c84; display:block; margin-bottom:4px;">Title</label>
+                <input type="text" id="edit-title"
+                    style="width:100%; padding:8px 12px; border:1px solid #ddd; border-radius:6px; font-size:14px; font-family:system-ui; margin-bottom:12px; box-sizing:border-box;">
+
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:12px;">
+                    <div>
+                        <label style="font-size:13px; color:#5e6c84; display:block; margin-bottom:4px;">Priority</label>
+                        <select id="edit-priority"
+                            style="width:100%; padding:8px 12px; border:1px solid #ddd; border-radius:6px; font-size:14px; font-family:system-ui;">
+                            <option value="low">🟢 Low</option>
+                            <option value="medium">🟡 Medium</option>
+                            <option value="high">🔴 High</option>
+                        </select>
+                        <button onclick="addCustomPriority('edit')" title="Add custom priority"
+                            style="padding:8px 10px; background:dodgerblue; color:white; border:none; border-radius:6px; cursor:pointer; font-size:16px; font-weight:700;">
+                            +
+                        </button>
+                    </div>
+                    <div>
+                        <label style="font-size:13px; color:#5e6c84; display:block; margin-bottom:4px;">Status</label>
+                        <select id="edit-status"
+                            style="width:100%; padding:8px 12px; border:1px solid #ddd; border-radius:6px; font-size:14px; font-family:system-ui;">
+                            <option value="todo">To Do</option>
+                            <option value="inprogress">In Progress</option>
+                            <option value="done">Done</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                    <div>
+                        <label style="font-size:13px; color:#5e6c84; display:block; margin-bottom:4px;">Category</label>
+                        <select id="edit-category"
+                            style="width:100%; padding:8px 12px; border:1px solid #ddd; border-radius:6px; font-size:14px; font-family:system-ui;">
+                            <option value="General">General</option>
+                            <option value="Design">Design</option>
+                            <option value="Development">Development</option>
+                            <option value="Marketing">Marketing</option>
+                        </select>
+                        <button onclick="addCustomCategory('edit')" title="Add custom category"
+                            style="padding:8px 10px; background:dodgerblue; color:white; border:none; border-radius:6px; cursor:pointer; font-size:16px; font-weight:700;">
+                            +
+                        </button>
+                    </div>
+                    <div>
+                        <label style="font-size:13px; color:#5e6c84; display:block; margin-bottom:4px;">Assign
+                            To</label>
+                        <select id="edit-assign"
+                            style="width:100%; padding:8px 12px; border:1px solid #ddd; border-radius:6px; font-size:14px; font-family:system-ui;">
+                            <option value="">Unassigned</option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Comments Section -->
+            <div style="padding:20px 24px;">
+                <h4 style="color:#253858; margin:0 0 16px; font-size:0.95rem;">💬 Comments</h4>
+                <div id="comments-list" style="margin-bottom:16px;"></div>
+                <div style="display:flex; gap:8px;">
+                    <input type="text" id="comment-input" placeholder="Write a comment..."
+                        style="flex:1; padding:8px 12px; border:1px solid #ddd; border-radius:6px; font-size:14px; font-family:system-ui;"
+                        onkeydown="if(event.key==='Enter') addComment()">
+                    <button onclick="addComment()"
+                        style="padding:8px 16px; background:dodgerblue; color:white; border:none; border-radius:6px; cursor:pointer; font-family:system-ui; font-weight:500;">
+                        Post
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- Custom Option Popup -->
+    <div id="custom-popup"
+        style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.4); z-index:9999; justify-content:center; align-items:center;">
+        <div
+            style="background:white; border-radius:12px; padding:28px; width:100%; max-width:360px; box-shadow:0 8px 32px rgba(0,0,0,0.2); margin:20px;">
+            <h3 id="popup-title" style="color:#253858; margin:0 0 16px; font-size:1rem;"></h3>
+            <input type="text" id="custom-input" placeholder="Enter name..."
+                style="width:100%; padding:10px 12px; border:1px solid #ddd; border-radius:6px; font-size:14px; font-family:system-ui; box-sizing:border-box; margin-bottom:8px;"
+                onkeydown="if(event.key==='Enter') confirmCustomOption()">
+            <div id="popup-error" style="color:red; font-size:12px; margin-bottom:12px; min-height:16px;"></div>
+            <div style="display:flex; gap:8px; justify-content:flex-end;">
+                <button onclick="closePopup()"
+                    style="padding:8px 16px; background:#f4f5f7; border:1px solid #ddd; border-radius:6px; cursor:pointer; font-family:system-ui; color:#253858;">
+                    Cancel
+                </button>
+                <button onclick="confirmCustomOption()"
+                    style="padding:8px 16px; background:dodgerblue; color:white; border:none; border-radius:6px; cursor:pointer; font-family:system-ui; font-weight:500;">
+                    Add
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- Invite User Popup -->
+<div id="invite-popup"
+    style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.4); z-index:9999; justify-content:center; align-items:center;">
+    <div style="background:white; border-radius:12px; padding:28px; width:100%; max-width:400px; box-shadow:0 8px 32px rgba(0,0,0,0.2); margin:20px;">
+        <h3 style="color:#253858; margin:0 0 8px; font-size:1rem;">👤 Add User by Email</h3>
+        <p style="color:#5e6c84; font-size:13px; margin:0 0 16px; font-family:system-ui;">
+            Enter the email of the person you want to assign tasks to. They will receive an email notification when assigned.
+        </p>
+        <label style="font-size:13px; color:#253858; display:block; margin-bottom:4px;">Email Address</label>
+        <input type="email" id="invite-email" placeholder="person@company.com"
+            style="width:100%; padding:10px 12px; border:1px solid #ddd; border-radius:6px; font-size:14px; font-family:system-ui; box-sizing:border-box; margin-bottom:8px;"
+            onkeydown="if(event.key==='Enter') confirmInvite()">
+        <div id="invite-error" style="color:red; font-size:12px; margin-bottom:12px; min-height:16px;"></div>
+        <div id="invite-success" style="color:green; font-size:12px; margin-bottom:12px; min-height:16px;"></div>
+        <div style="display:flex; gap:8px; justify-content:flex-end;">
+            <button onclick="closeInvitePopup()"
+                style="padding:8px 16px; background:#f4f5f7; border:1px solid #ddd; border-radius:6px; cursor:pointer; font-family:system-ui;">
+                Cancel
+            </button>
+            <button onclick="confirmInvite()" id="invite-btn"
+                style="padding:8px 16px; background:dodgerblue; color:white; border:none; border-radius:6px; cursor:pointer; font-family:system-ui; font-weight:500;">
+                Add User
+            </button>
+        </div>
+    </div>
+</div>
 </body>
 
 </html>
