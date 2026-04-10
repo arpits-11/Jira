@@ -220,7 +220,9 @@ app.post('/api/register', async (req, res) => {
     }
     try {
         const existing = await User.findOne({ email });
-        if (existing) return res.status(409).json({ message: 'Email already registered' });
+        if (existing && existing.provider !== 'invited') {
+            return res.status(409).json({ message: 'Email already registered' });
+        }
         const hashedPassword = await bcrypt.hash(password, 10);
         const user = new User({ name, email, password: hashedPassword, provider: 'email' });
         await user.save();
@@ -239,7 +241,9 @@ app.post('/api/login', async (req, res) => {
     try {
         const user = await User.findOne({ email });
         if (!user) return res.status(404).json({ message: 'Email not found' });
-        const isMatch = await bcrypt.compare(password, user.password);
+        if (!user.password) {
+            return res.status(401).json({ message: 'Please register first to set your password' });
+        }
         if (!isMatch) return res.status(401).json({ message: 'Wrong password' });
         const token = jwt.sign(
             { userId: user._id, email: user.email },
