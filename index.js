@@ -163,7 +163,7 @@ if (googleBtn) {
     const mockUser = { email: 'user@gmail.com', name: 'Google User', provider: 'google' };
 
     try {
-      const res = await fetch('http://localhost:5000/api/oauth-login', {
+      const res = await fetch('https://jira-clone-ku4i.onrender.com/api/oauth-login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(mockUser)
@@ -186,7 +186,7 @@ if (microsoftBtn) {
     const mockUser = { email: 'user@outlook.com', name: 'Microsoft User', provider: 'microsoft' };
 
     try {
-      const res = await fetch('http://localhost:5000/api/oauth-login', {
+      const res = await fetch('https://jira-clone-ku4i.onrender.com/api/oauth-login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(mockUser)
@@ -262,7 +262,7 @@ async function register() {
   if (!/[A-Za-z]/.test(password) || !/[0-9]/.test(password)) { errorMsg.textContent = 'Password must contain at least one letter and one number.'; return; }
 
   try {
-    const res = await fetch('http://localhost:5000/api/register', {
+    const res = await fetch('https://jira-clone-ku4i.onrender.com/api/register', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name, email, password })
@@ -293,7 +293,7 @@ async function login() {
   if (password.length < 6) { errorMsg.textContent = 'Password must be at least 6 characters.'; return; }
 
   try {
-    const res = await fetch('http://localhost:5000/api/login', {
+    const res = await fetch('https://jira-clone-ku4i.onrender.com/api/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password })
@@ -354,7 +354,7 @@ async function addTask() {
 
   const currentToken = localStorage.getItem('token');
   try {
-    await fetch('http://localhost:5000/api/tasks', {
+    await fetch('https://jira-clone-ku4i.onrender.com/api/tasks', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -373,7 +373,7 @@ async function addTask() {
 async function loadTasks() {
   const currentToken = localStorage.getItem('token');
   try {
-    const res = await fetch('http://localhost:5000/api/tasks', {
+    const res = await fetch('https://jira-clone-ku4i.onrender.com/api/tasks', {
       headers: { 'Authorization': `Bearer ${currentToken}` }
     });
     allTasks = await res.json();
@@ -601,7 +601,7 @@ async function moveTaskToColumn(id, status) {
     ? { customStatus: status, staus: 'todo' }
     : { status: status, customStatus: '' };
 
-  await fetch(`http://localhost:5000/api/tasks/${id}`, {
+  await fetch(`https://jira-clone-ku4i.onrender.com/api/tasks/${id}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${currentToken}` },
     body: JSON.stringify({ status })
@@ -615,7 +615,7 @@ async function moveTask(id, status) {
 async function deleteTask(id) {
   if (!confirm('Delete this task?')) return;
   const currentToken = localStorage.getItem('token');
-  await fetch(`http://localhost:5000/api/tasks/${id}`, {
+  await fetch(`https://jira-clone-ku4i.onrender.com/api/tasks/${id}`, {
     method: 'DELETE',
     headers: { 'Authorization': `Bearer ${currentToken}` }
   });
@@ -625,7 +625,7 @@ async function deleteTask(id) {
 async function loadProfile() {
   const currentToken = localStorage.getItem('token');
   try {
-    const res = await fetch('http://localhost:5000/api/profile', {
+    const res = await fetch('https://jira-clone-ku4i.onrender.com/api/profile', {
       headers: { 'Authorization': `Bearer ${currentToken}` }
     });
     const user = await res.json();
@@ -639,7 +639,7 @@ async function loadProfile() {
     document.getElementById('profile-email-display').textContent = user.email;
     document.getElementById('profile-avatar').textContent = (user.name || user.email)[0].toUpperCase();
 
-    const tasksRes = await fetch('http://localhost:5000/api/tasks', {
+    const tasksRes = await fetch('https://jira-clone-ku4i.onrender.com/api/tasks', {
       headers: { 'Authorization': `Bearer ${currentToken}` }
     });
     const tasks = await tasksRes.json();
@@ -667,7 +667,7 @@ async function saveProfile() {
   msgEl.style.color = 'green';
 
   try {
-    const res = await fetch('http://localhost:5000/api/profile', {
+    const res = await fetch('https://jira-clone-ku4i.onrender.com/api/profile', {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -738,7 +738,7 @@ function toggleEditMode() {
 
   // Fill assign dropdown with users
   const currentToken = localStorage.getItem('token');
-  fetch('http://localhost:5000/api/users', {
+  fetch('https://jira-clone-ku4i.onrender.com/api/users', {
     headers: { 'Authorization': `Bearer ${currentToken}` }
   })
     .then(res => res.json())
@@ -782,7 +782,7 @@ async function saveTaskEdit() {
   const currentToken = localStorage.getItem('token');
 
   try {
-    const res = await fetch(`http://localhost:5000/api/tasks/${currentTaskId}`, {
+    const res = await fetch(`https://jira-clone-ku4i.onrender.com/api/tasks/${currentTaskId}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -827,7 +827,7 @@ async function loadComments(taskId) {
   const currentToken = localStorage.getItem('token');
 
   try {
-    const res = await fetch(`http://localhost:5000/api/comments/${taskId}`, {
+    const res = await fetch(`https://jira-clone-ku4i.onrender.com/api/comments/${taskId}`, {
       headers: { 'Authorization': `Bearer ${currentToken}` }
     });
     const comments = await res.json();
@@ -870,7 +870,7 @@ async function addComment() {
   if (!text) return;
   const currentToken = localStorage.getItem('token');
   try {
-    const res = await fetch(`http://localhost:5000/api/comments/${currentTaskId}`, {
+    const res = await fetch(`https://jira-clone-ku4i.onrender.com/api/comments/${currentTaskId}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -891,7 +891,7 @@ async function deleteComment(commentId) {
   if (!confirm('Delete this comment?')) return;
   const currentToken = localStorage.getItem('token');
   try {
-    await fetch(`http://localhost:5000/api/comments/${commentId}`, {
+    await fetch(`https://jira-clone-ku4i.onrender.com/api/comments/${commentId}`, {
       method: 'DELETE',
       headers: { 'Authorization': `Bearer ${currentToken}` }
     });
@@ -905,7 +905,7 @@ async function deleteComment(commentId) {
 async function loadUsers() {
   const currentToken = localStorage.getItem('token');
   try {
-    const res = await fetch('http://localhost:5000/api/users', {
+    const res = await fetch('https://jira-clone-ku4i.onrender.com/api/users', {
       headers: { 'Authorization': `Bearer ${currentToken}` }
     });
     const users = await res.json();
@@ -928,7 +928,7 @@ let customColumns = []; // stores { _id, name }
 async function loadColumns() {
   const currentToken = localStorage.getItem('token');
   try {
-    const res = await fetch('http://localhost:5000/api/columns', {
+    const res = await fetch('https://jira-clone-ku4i.onrender.com/api/columns', {
       headers: { 'Authorization': `Bearer ${currentToken}` }
     });
     customColumns = await res.json();
@@ -1003,7 +1003,7 @@ async function confirmAddColumn() {
 
   const currentToken = localStorage.getItem('token');
   try {
-    const res = await fetch('http://localhost:5000/api/columns', {
+    const res = await fetch('https://jira-clone-ku4i.onrender.com/api/columns', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -1032,7 +1032,7 @@ async function deleteColumn(columnId) {
 
   const currentToken = localStorage.getItem('token');
   try {
-    await fetch(`http://localhost:5000/api/columns/${columnId}`, {
+    await fetch(`https://jira-clone-ku4i.onrender.com/api/columns/${columnId}`, {
       method: 'DELETE',
       headers: { 'Authorization': `Bearer ${currentToken}` }
     });
@@ -1152,7 +1152,7 @@ function updateSummaryCards(tasks) {
 async function loadActivity() {
   const currentToken = localStorage.getItem('token');
   try {
-    const res = await fetch('http://localhost:5000/api/activity', {
+    const res = await fetch('https://jira-clone-ku4i.onrender.com/api/activity', {
       headers: { 'Authorization': `Bearer ${currentToken}` }
     });
     const activities = await res.json();
@@ -1229,7 +1229,7 @@ function exportToExcel() {
 async function loadNotifications() {
   const currentToken = localStorage.getItem('token');
   try {
-    const res = await fetch('http://localhost:5000/api/notifications', {
+    const res = await fetch('https://jira-clone-ku4i.onrender.com/api/notifications', {
       headers: { 'Authorization': `Bearer ${currentToken}` }
     });
     const notifications = await res.json();
@@ -1279,7 +1279,7 @@ function toggleNotifications() {
 async function markAllRead() {
   const currentToken = localStorage.getItem('token');
   try {
-    await fetch('http://localhost:5000/api/notifications/read', {
+    await fetch('https://jira-clone-ku4i.onrender.com/api/notifications/read', {
       method: 'PUT',
       headers: { 'Authorization': `Bearer ${currentToken}` }
     });
@@ -1337,7 +1337,7 @@ async function confirmInvite() {
 
   const currentToken = localStorage.getItem('token');
   try {
-    const res = await fetch('http://localhost:5000/api/invite-user', {
+    const res = await fetch('https://jira-clone-ku4i.onrender.com/api/invite-user', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
