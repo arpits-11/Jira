@@ -244,6 +244,7 @@ app.post('/api/login', async (req, res) => {
         if (!user.password) {
             return res.status(401).json({ message: 'Please register first to set your password' });
         }
+        const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) return res.status(401).json({ message: 'Wrong password' });
         const token = jwt.sign(
             { userId: user._id, email: user.email },
