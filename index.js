@@ -1378,3 +1378,153 @@ async function confirmInvite() {
     btn.disabled = false;
   }
 }
+
+const API_BASE = 'https://jira-clone-ku4i.onrender.com';
+
+// ─── NL Task Creator: stored parsed data ─────────────
+let nlParsedTask = null;
+
+// ─── Switch between Manual / AI tab ──────────────────
+function switchTaskTab(tab) {
+  const manual = document.getElementById('manual-task-input');
+  const ai = document.getElementById('ai-task-input');
+  const tabManual = document.getElementById('tab-manual');
+  const tabAi = document.getElementById('tab-ai');
+
+  if (tab === 'manual') {
+    manual.style.display = 'block';
+    ai.style.display = 'none';
+    tabManual.style.color = 'dodgerblue';
+    tabManual.style.borderBottom = '2px solid dodgerblue';
+    tabAi.style.color = '#5e6c84';
+    tabAi.style.borderBottom = '2px solid transparent';
+  } else {
+    manual.style.display = 'none';
+    ai.style.display = 'block';
+    tabAi.style.color = 'dodgerblue';
+    tabAi.style.borderBottom = '2px solid dodgerblue';
+    tabManual.style.color = '#5e6c84';
+    tabManual.style.borderBottom = '2px solid transparent';
+  }
+}
+
+// ─── Feature 3: NL Task Creator ──────────────────────
+async function parseAndCreateTask() {
+  const sentence = document.getElementById('nl-task-input').value.trim();
+  if (!sentence) { alert('Please describe your task first.'); return; }
+
+  const btn = document.getElementById('nl-create-btn');
+  btn.textContent = '⏳ Parsing...';
+  btn.disabled = true;
+
+  const token = localStorage.getItem('token');
+  try {
+    const res = await fetch(`${API_BASE}/api/ai/parse-task`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+      body: JSON.stringify({ sentence })
+    });
+    const data = await res.json();
+
+    if (res.ok) {
+      nlParsedTask = data;
+      document.getElementById('nl-title').textContent = data.title || '—';
+      document.getElementById('nl-priority').textContent = data.priority || 'medium';
+      document.getElementById('nl-category').textContent = data.category || 'General';
+      document.getElementById('nl-assignee').textContent = data.assignedToName || 'Unassigned';
+      document.getElementById('nl-preview').style.display = 'block';
+    } else {
+      alert('Could not parse task. Try rephrasing.');
+    }
+  } catch (err) {
+    alert('AI error. Please try again.');
+  }
+  btn.textContent = '🤖 Create with AI';
+  btn.disabled = false;
+}
+
+async function confirmNLTask() {
+  if (!nlParsedTask) return;
+  const token = localStorage.getItem('token');
+  try {
+    await fetch(`${API_BASE}/api/tasks`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+      body: JSON.stringify({
+        title: nlParsedTask.title,
+        priority: nlParsedTask.priority || 'medium',
+        category: nlParsedTask.category || 'General',
+        assignedTo: nlParsedTask.assignedToId || '',
+        assignedToName: nlParsedTask.assignedToName || ''
+      })
+    });
+    document.getElementById('nl-task-input').value = '';
+    document.getElementById('nl-preview').style.display = 'none';
+    nlParsedTask = null;
+    loadTasks();
+  } catch (err) {
+    alert('Could not create task. Try again.');
+  }
+}
+
+// -----Sprint planner-----
+
+function openSprintPlanner() {
+  document.getElementById('sprint-result').style.display = 'none';
+  document.getElementById('sprint-loading').style.display = 'none';
+  document.getElementById('sprint-form').style.display = 'block';
+  document.getElementById('sprint-modal').style.display = 'flex';
+}
+
+async function runSprintPlanner() {
+  const developers = parseInt(document.getElementById('sprint-devs').value);
+  const sprintDays = parseInt(document.getElementById('sprint-days').value);
+
+  if (!developers || !sprintDays) { alert('Please fill in both fields.'); return; }
+
+  const btn = document.getElementById('sprint-btn');
+  btn.textContent = '⏳ Planning...';
+  btn.disabled = true;
+  document.getElementById('sprint-form').style.display = 'none';
+  document.getElementById('sprint-loading').style.display = 'block';
+
+  const token = localStorage.getItem('token');
+  try {
+    const res = await fetch(`${API_BASE}/api/ai/sprint-plan`, {
+      method: 'POST',
+      headers: { 'Content-type': 'application/json', 'Authorization': `Bearer ${token}` },
+      body: JSON.stringify({ developers, sprintDays })
+    });
+    const data = await res.json();
+
+    docuemnt.getElementById('sprint-loading').style.display = 'none';
+    document.getElementById('sprint-result').textContent = data.plan;
+    document.getElementById('sprint-result').style.display = 'block';
+    document.getElementById('sprint-form').style.display = 'block';
+  }
+  catch (err) {
+    document.getElementById('sprint-loading').style.display = 'none';
+    docuemnt.getElementById('spriint-form').style.display = 'block';
+    alert('AI error.Please try again.');
+  }
+  btn.textContent = '🚀 Generate Sprint Plan';
+  btn.disabled = false;
+}
+
+// ---Test Weekly Summary---
+
+async function testWeeklySummary() {
+  if (!confirm('Send weekly summary emails to all users now?')) return;
+  const token = localStorage.getItem('token');
+  try {
+    const res = await fetch(`${API_BASE}/api/ai/send-weekly-summary`, {
+      method: 'POST',
+      headers: { 'Content-type': 'application/json', 'Authorization': `Bearer ${token}` }
+    });
+    const data = await res.json();
+    alert(res.ok ? '✅ Weekly summary emails sent!' : '❌ ' + data.message);
+  }
+  catch (err) {
+    alert('Error sending emails.');
+  }
+}
