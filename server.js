@@ -557,6 +557,170 @@ app.post('/api/invite-user', authMiddleware, async (req, res) => {
 });
 
 
+const cron = require('node-cron');
+// ─── AI Helper: Call Claude API ───────────────────────
+async function callClaude(prompt, maxTokens = 1024) {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'x-api-key': process.env.CLAUDE_API_KEY,
+            'anthropic-version': '2023-06-01'
+        },
+        body: JSON.stringify({
+            model: 'claude-sonnet-4-20250514',
+            max_tokens: maxTokens,
+            messages: [{ role: 'user', content: prompt }]
+        })
+    });
+    const data = await response.json();
+    if (!data.content) throw new Error(JSON.stringify(data));
+    return data.content[0].text;
+}
+
+// ─── AI Route 1: Natural Language Task Creator ────────
+app.post('/api/ai/parse-task', authMiddleware, async (req, res) => {
+    try {
+        const { sentence } = req.body;
+        if (!sentence) return res.status(400).json({ message: 'Sentence is required' });
+
+        // Get all users so AI can match names
+        const users = await User.find({}).select('name email');
+        const userList = users.map(u => `${u.name || u.email} (id: ${u._id})`).join(', ');
+
+        const prompt = `You are a project management assistant. Parse the following natural language sentence into a structured task.
+ 
+Sentence: "${sentence}"
+ 
+Available team members: ${userList || 'None'}
+ 
+Reply ONLY with a valid JSON object, no explanation, no markdown, no backticks:
+{
+  "title": "task title here",
+  "priority": "high" or "medium" or "low",
+  "category": "General" or "Design" or "Development" or "Marketing",
+  "assignedToName": "exact name from team members list or empty string if not mentioned",
+  "assignedToId": "user id from team members list or empty string if not mentioned"
+}`;
+
+        const result = await callClaude(prompt);
+        const cleaned = result.replace(/```json|```/g, '').trim();
+        const parsed = JSON.parse(cleaned);
+        res.json(parsed);
+    } catch (err) {
+        res.status(500).json({ message: 'AI error', error: err.message });
+    }
+});
+
+// ─── AI Route 2: Sprint Planner ───────────────────────
+app.post('/api/ai/sprint-plan', authMiddleware, async (req, res) => {
+    try {
+        const { developers, sprintDays } = req.body;
+        if (!developers || !sprintDays) return res.status(400).json({ message: 'Developers and sprint days required' });
+
+        const tasks = await Task.find({ userId: req.userId, status: 'todo' });
+        if (!tasks.length) return res.json({ plan: 'No TODO tasks found to plan a sprint.' });
+
+        const taskList = tasks.map((t, i) =>
+            `${i + 1}. "${t.title}" | Priority: ${t.priority} | Category: ${t.category || 'General'} | Assigned: ${t.assignedToName || 'Unassigned'}`
+        ).join('\n');
+
+        const prompt = `You are an expert scrum master. Plan a sprint for a team.
+ 
+Team size: ${developers} developers
+Sprint duration: ${sprintDays} working days
+Assumption: each developer handles ~${Math.round((sprintDays * 6) / developers)} hours of work per sprint
+ 
+TODO Tasks:
+${taskList}
+ 
+Create a sprint plan with:
+1. 🎯 Sprint Goal — one sentence summary of what this sprint achieves
+2. ✅ Recommended Sprint Backlog — which tasks to include (pick realistic amount based on team size and days), assign each to a developer if already assigned, otherwise suggest who should take it
+3. 📊 Workload Distribution — how work is spread across developers
+4. ⚠️ Risks — any concerns about the sprint
+5. 🚫 Backlog (Deferred) — tasks not included and why
+ 
+Be specific, practical, and concise. Use bullet points.`;
+
+        const plan = await callClaude(prompt, 2048);
+        res.json({ plan: plan.trim() });
+    } catch (err) {
+        res.status(500).json({ message: 'AI error', error: err.message });
+    }
+});
+
+// ─── AI Route 3: Weekly Summary Email ─────────────────
+async function sendWeeklySummary() {
+    try {
+        const users = await User.find({ provider: { $ne: 'invited' } });
+
+        for (const user of users) {
+            const tasks = await Task.find({
+                $or: [{ userId: user._id }, { assignedTo: user._id }]
+            });
+
+            if (!tasks.length) continue;
+
+            const taskSummary = tasks.map(t =>
+                `- "${t.title}" | Status: ${t.status} | Priority: ${t.priority} | Category: ${t.category || 'General'}`
+            ).join('\n');
+
+            const prompt = `You are a productivity assistant. Write a friendly, motivating weekly summary email for ${user.name || user.email}.
+ 
+Their current tasks:
+${taskSummary}
+ 
+Write an email with:
+1. A warm greeting using their name
+2. What they completed last week (done tasks)
+3. What's on their plate this week (todo + inprogress tasks)  
+4. Their workload score (light/moderate/heavy based on task count)
+5. One motivating closing line
+ 
+Keep it concise, friendly, professional. No subject line needed, just the email body.`;
+
+            const emailBody = await callClaude(prompt, 1024);
+
+            await transporter.sendMail({
+                from: `"Jira Clone" <${process.env.EMAIL_USER}>`,
+                to: user.email,
+                subject: `📊 Your Weekly Task Summary — ${new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric' })}`,
+                html: `
+                    <div style="font-family:system-ui; max-width:560px; margin:auto; padding:24px; border:1px solid #eee; border-radius:12px;">
+                        <div style="background:dodgerblue; padding:16px 24px; border-radius:8px; margin-bottom:24px;">
+                            <h2 style="color:white; margin:0; font-size:1.2rem;">📊 Weekly Summary</h2>
+                            <p style="color:rgba(255,255,255,0.85); margin:4px 0 0; font-size:13px;">
+                                Week of ${new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })}
+                            </p>
+                        </div>
+                        <div style="white-space:pre-wrap; color:#253858; font-size:14px; line-height:1.8;">${emailBody}</div>
+                        <hr style="border:none; border-top:1px solid #eee; margin:24px 0;">
+                        <p style="color:#c1c7d0; font-size:12px; text-align:center;">Jira Clone — Automated Weekly Summary</p>
+                    </div>
+                `
+            });
+            console.log(`Weekly summary sent to ${user.email}`);
+        }
+    } catch (err) {
+        console.log('Weekly summary error:', err.message);
+    }
+}
+
+// Run every Monday at 8:00 AM
+cron.schedule('0 8 * * 1', sendWeeklySummary, { timezone: 'Asia/Kolkata' });
+
+// Manual trigger endpoint (for testing)
+app.post('/api/ai/send-weekly-summary', authMiddleware, async (req, res) => {
+    try {
+        await sendWeeklySummary();
+        res.json({ message: 'Weekly summary emails sent!' });
+    } catch (err) {
+        res.status(500).json({ message: 'Error sending summaries', error: err.message });
+    }
+});
+
+
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
