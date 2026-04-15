@@ -1380,6 +1380,7 @@ async function confirmInvite() {
 }
 
 const API_BASE = 'https://jira-clone-ku4i.onrender.com';
+// const API_BASE = 'http://localhost:5000';
 
 // ─── NL Task Creator: stored parsed data ─────────────
 let nlParsedTask = null;
@@ -1497,14 +1498,14 @@ async function runSprintPlanner() {
     });
     const data = await res.json();
 
-    docuemnt.getElementById('sprint-loading').style.display = 'none';
+    document.getElementById('sprint-loading').style.display = 'none';
     document.getElementById('sprint-result').textContent = data.plan;
     document.getElementById('sprint-result').style.display = 'block';
     document.getElementById('sprint-form').style.display = 'block';
   }
   catch (err) {
     document.getElementById('sprint-loading').style.display = 'none';
-    docuemnt.getElementById('spriint-form').style.display = 'block';
+    document.getElementById('sprint-form').style.display = 'block';
     alert('AI error.Please try again.');
   }
   btn.textContent = '🚀 Generate Sprint Plan';
